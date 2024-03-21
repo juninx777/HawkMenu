@@ -366,8 +366,8 @@ local function createSpectatorGUI()
 
     -- Criar um TextBox para inserir o nome do jogador a ser observado
     Tab:AddTextbox({
-        Name = "PlayerName",
-        Default = "Nome do Jogador",
+        Name = "Nome do Jogador",
+        Default = "Espectar",
         TextDisappear = true,
         Callback = function(playerName)
             toggleSpectate(playerName)
@@ -376,7 +376,7 @@ local function createSpectatorGUI()
 
     -- Criar uma caixa de seleção para iniciar/parar de observar
     Tab:AddToggle({
-        Name = "Espectar",
+        Name = "Espectar|Parar",
         Default = false,
         Callback = function(isToggling)
             if isToggling then
