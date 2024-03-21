@@ -346,9 +346,6 @@ local Section = Tab:AddSection({
 	Name = "Espectar"
 })
 
--- Variável para rastrear se está espectando ou não
-local isSpectating = false
-
 -- Função para criar a GUI de espectador
 local function createSpectatorGUI()
     -- Função para começar ou parar de espectar
@@ -377,21 +374,18 @@ local function createSpectatorGUI()
         end	  
     })
 
-    -- Criar um botão para iniciar/parar de observar
-    local button = Tab:AddButton({
-        Name = "Espectar",
+    -- Criar um botão para parar de observar
+    Tab:AddButton({
+        Name = "Parar de Espectar",
         Callback = function()
-            local playerName = Tab:GetTextboxValue("PlayerName")
-            toggleSpectate(playerName)
-            button:SetText(isSpectating and "Parar de Espectar" or "Espectar")
+            game.Workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character
+            isSpectating = false
         end    
     })
 end
 
 -- Chamar a função para criar e mostrar a GUI de espectador
 createSpectatorGUI()
-
-
 
 -- SEPARAÇÃO!
 
