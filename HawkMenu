@@ -374,12 +374,17 @@ local function createSpectatorGUI()
         end	  
     })
 
-    -- Criar um botão para parar de observar
-    Tab:AddButton({
-        Name = "Parar de Espectar",
-        Callback = function()
-            game.Workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character
-            isSpectating = false
+    -- Criar uma caixa de seleção para iniciar/parar de observar
+    Tab:AddToggle({
+        Name = "Espectar",
+        Default = false,
+        Callback = function(isToggling)
+            if isToggling then
+                toggleSpectate(Tab:GetTextboxValue("PlayerName"))
+            else
+                game.Workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character
+                isSpectating = false
+            end
         end    
     })
 end
