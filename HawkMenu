@@ -346,148 +346,52 @@ local Section = Tab:AddSection({
 	Name = "Espectar"
 })
 
-Tab:AddButton({
-	Name = "Espectar",
-	Callback = function()
-      		-- Função para criar e mostrar a GUI
-local function createGUI()
-    -- Criar a GUI
-    local gui = Instance.new("ScreenGui")
-    gui.Name = "SpectateGUI"
-    gui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-
-    local frame = Instance.new("Frame")
-    frame.Name = "MainFrame"
-    frame.Parent = gui
-    frame.Size = UDim2.new(0, 282, 0, 170)
-    frame.Position = UDim2.new(0.342556, 0, 0.327935219, 0)
-    frame.BackgroundColor3 = Color3.fromRGB(28, 28, 28) -- Alteração da cor para (28, 28, 28)
-    frame.BorderSizePixel = 0
-
-    local UICorner = Instance.new("UICorner")
-    UICorner.CornerRadius = UDim.new(0, 10)
-    UICorner.Parent = frame
-
-    local Fechar = Instance.new("TextButton")
-    Fechar.Name = "Fechar"
-    Fechar.Parent = frame
-    Fechar.Size = UDim2.new(0, 27, 0, 24)
-    Fechar.Position = UDim2.new(0.904255331, 0, 0, 0)
-    Fechar.BackgroundColor3 = Color3.fromRGB(255, 58, 61)
-    Fechar.BorderSizePixel = 0
-    Fechar.Font = Enum.Font.SourceSans
-    Fechar.Text = "X"
-    Fechar.TextColor3 = Color3.fromRGB(255, 255, 255)
-    Fechar.TextSize = 14
-
-    local NomeDoJogador = Instance.new("TextBox")
-    NomeDoJogador.Name = "NomeDoJogador"
-    NomeDoJogador.Parent = frame
-    NomeDoJogador.Size = UDim2.new(0, 200, 0, 36)
-    NomeDoJogador.Position = UDim2.new(0.145390064, 0, 0.200000003, 0)
-    NomeDoJogador.BackgroundColor3 = Color3.fromRGB(72, 72, 72)
-    NomeDoJogador.BorderSizePixel = 0
-    NomeDoJogador.Font = Enum.Font.SourceSans
-    NomeDoJogador.PlaceholderText = "Nome do Jogador"
-    NomeDoJogador.Text = ""
-    NomeDoJogador.TextColor3 = Color3.fromRGB(255, 255, 255)
-    NomeDoJogador.TextSize = 14
-
-    local UICorner_2 = Instance.new("UICorner")
-    UICorner_2.CornerRadius = UDim.new(0, 8)
-    UICorner_2.Parent = NomeDoJogador
-
-    local BotEspectar = Instance.new("TextButton")
-    BotEspectar.Name = "BotEspectar"
-    BotEspectar.Parent = frame
-    BotEspectar.Size = UDim2.new(0, 167, 0, 42)
-    BotEspectar.Position = UDim2.new(0.202127665, 0, 0.517647088, 0)
-    BotEspectar.BackgroundColor3 = Color3.fromRGB(255, 51, 54)
-    BotEspectar.BorderSizePixel = 0
-    BotEspectar.Font = Enum.Font.SourceSans
-    BotEspectar.Text = "Espectar"
-    BotEspectar.TextColor3 = Color3.fromRGB(255, 255, 255)
-    BotEspectar.TextSize = 14
-
-    local UICorner_3 = Instance.new("UICorner")
-    UICorner_3.CornerRadius = UDim.new(0, 8)
-    UICorner_3.Parent = BotEspectar
-
-    local TextLabel = Instance.new("TextLabel")
-    TextLabel.Parent = frame
-    TextLabel.Size = UDim2.new(0, 72, 0, 20)
-    TextLabel.Position = UDim2.new(0.0531914905, 0, 0.835294127, 0)
-    TextLabel.BackgroundTransparency = 1
-    TextLabel.Font = Enum.Font.SourceSans
-    TextLabel.Text = "HawkMenu"
-    TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-    TextLabel.TextSize = 14
-
-    -- Variável para rastrear se está espectando ou não
-    local isSpectating = false
-
-    -- Função para fechar a GUI
-    Fechar.MouseButton1Click:Connect(function()
-        gui:Destroy()
-    end)
-
+-- Função para criar a GUI de espectador
+local function createSpectatorGUI()
     -- Função para começar ou parar de espectar
-    BotEspectar.MouseButton1Click:Connect(function()
-        local playerName = NomeDoJogador.Text
+    local function toggleSpectate(playerName)
         local player = game.Players:FindFirstChild(playerName)
         if player then
             if isSpectating then
                 game.Workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character
-                BotEspectar.Text = "Espectar"
+                isSpectating = false
             else
                 game.Workspace.CurrentCamera.CameraSubject = player.Character
-                BotEspectar.Text = "Parar de Espectar"
+                isSpectating = true
             end
-            isSpectating = not isSpectating
         else
             print("Jogador não encontrado:", playerName)
         end
-    end)
+    end
 
-    -- Tornar a GUI móvel
-    local dragging
-    local dragInput
-    local dragStart
-    local startPos
+    -- Criar um TextBox para inserir o nome do jogador a ser observado
+    Tab:AddTextbox({
+        Name = "PlayerName",
+        Default = "Nome do Jogador",
+        TextDisappear = true,
+        Callback = function(playerName)
+            toggleSpectate(playerName)
+        end	  
+    })
 
-    frame.InputBegan:Connect(function(input)
-        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-            dragging = true
-            dragStart = input.Position
-            startPos = frame.Position
-
-            input.Changed:Connect(function()
-                if input.UserInputState == Enum.UserInputState.End then
-                    dragging = false
-                end
-            end)
-        end
-    end)
-
-    frame.InputChanged:Connect(function(input)
-        if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-            dragInput = input
-        end
-    end)
-
-    game:GetService("UserInputService").InputChanged:Connect(function(input)
-        if input == dragInput and dragging then
-            local delta = input.Position - dragStart
-            frame.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
-        end
-    end)
+    -- Criar uma caixa de seleção para iniciar/parar de observar
+    Tab:AddToggle({
+        Name = "Espectar",
+        Default = false,
+        Callback = function(isToggling)
+            if isToggling then
+                toggleSpectate(Tab:GetTextboxValue("PlayerName"))
+            else
+                game.Workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character
+                isSpectating = false
+            end
+        end    
+    })
 end
 
--- Chamar a função para criar e mostrar a GUI
-createGUI()
+-- Chamar a função para criar e mostrar a GUI de espectador
+createSpectatorGUI()
 
-  	end    
-})
 
 -- SEPARAÇÃO!
 
@@ -496,5 +400,3 @@ local Tab2 = Window:MakeTab({
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
-
-OrionLib:Init()
