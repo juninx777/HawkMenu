@@ -1,0 +1,500 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "HawkMenu", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+local Tab = Window:MakeTab({
+	Name = "Jogador",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+local Section = Tab:AddSection({
+	Name = "Opções - Tpway"
+})
+Tab:AddButton({
+	Name = "Tpway - Mobile",
+	Callback = function()
+
+local Players = game:GetService("Players")
+local UIS = game:GetService("UserInputService")
+
+local mouse = Players.LocalPlayer:GetMouse()
+local tool = Instance.new("Tool")
+tool.RequiresHandle = false
+tool.Name = "Tpway Mobile (HawkMenu)"
+
+local teleportMarker = game.Workspace:FindFirstChild("TeleportMarker")
+if not teleportMarker then
+    teleportMarker = Instance.new("Part")
+    teleportMarker.Name = "TeleportMarker"
+    teleportMarker.Size = Vector3.new(1, 1, 1)
+    teleportMarker.Anchored = true
+    teleportMarker.CanCollide = false
+    teleportMarker.Shape = Enum.PartType.Ball
+    teleportMarker.Color = Color3.fromRGB(255, 0, 0)
+    teleportMarker.Transparency = 0.5
+    teleportMarker.Parent = game.Workspace
+end
+
+local teleportButton
+local teleportButtonVisible = false
+
+-- Create teleport GUI
+local teleportScreenGui = Instance.new("ScreenGui")
+teleportScreenGui.Parent = game.Players.LocalPlayer.PlayerGui
+
+teleportButton = Instance.new("TextButton")
+teleportButton.Text = "Tpway"
+teleportButton.Size = UDim2.new(0, 100, 0, 50)
+teleportButton.Position = UDim2.new(0.85, -50, 0.1, 0) -- Posição ajustada
+teleportButton.Visible = false
+teleportButton.Parent = teleportScreenGui
+
+-- Move the button
+local isDragging = false
+local offset = Vector2.new(0, 0)
+
+teleportButton.MouseButton1Down:Connect(function()
+    isDragging = true
+    local startPos = UIS:GetMouseLocation()
+    offset = startPos - teleportButton.Position
+end)
+
+UIS.InputChanged:Connect(function(input)
+    if isDragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+        local newPos = UIS:GetMouseLocation() - offset
+        teleportButton.Position = UDim2.new(0, newPos.X, 0, newPos.Y)
+    end
+end)
+
+UIS.InputEnded:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        isDragging = false
+    end
+end)
+
+teleportButton.MouseButton1Click:Connect(function()
+    Teleport()
+end)
+
+function Teleport()
+    local character = Players.LocalPlayer.Character
+    if character then
+        local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
+        if humanoidRootPart then
+            local pos = teleportMarker.Position
+            humanoidRootPart.CFrame = CFrame.new(pos)
+            teleportMarker.Position = Vector3.new(0, -10000, 0) -- Move o marcador para longe
+            teleportButtonVisible = false
+            teleportButton.Visible = false
+        end
+    end
+end
+
+tool.Activated:Connect(function()
+    local pos = mouse.Hit.p
+    teleportMarker.Position = pos
+    
+    if UIS.TouchEnabled then
+        teleportButtonVisible = true
+        teleportButton.Visible = true
+    end
+end)
+
+tool.Parent = Players.LocalPlayer.Backpack
+
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Tpway - PC (Q)",
+	Callback = function()
+      		local Players = game:GetService("Players")
+local UIS = game:GetService("UserInputService")
+
+local mouse = Players.LocalPlayer:GetMouse()
+local tool = Instance.new("Tool")
+tool.RequiresHandle = false
+tool.Name = "Tpway(Q)"
+
+local teleportMarker = game.Workspace:FindFirstChild("TeleportMarker")
+if not teleportMarker then
+    teleportMarker = Instance.new("Part")
+    teleportMarker.Name = "TeleportMarker"
+    teleportMarker.Size = Vector3.new(1, 1, 1)
+    teleportMarker.Anchored = true
+    teleportMarker.CanCollide = false
+    teleportMarker.Shape = Enum.PartType.Ball
+    teleportMarker.Color = Color3.fromRGB(255, 0, 0)
+    teleportMarker.Transparency = 0.5
+    teleportMarker.Parent = game.Workspace
+end
+
+tool.Activated:Connect(function()
+    local pos = mouse.Hit.p
+    teleportMarker.Position = pos
+end)
+
+UIS.InputBegan:Connect(function(input)
+    if input.KeyCode == Enum.KeyCode.Q then
+        Teleport()
+    end
+end)
+
+function Teleport()
+    local character = Players.LocalPlayer.Character
+    if character then
+        local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
+        if humanoidRootPart then
+            local pos = teleportMarker.Position
+            humanoidRootPart.CFrame = CFrame.new(pos)
+            teleportMarker.Position = Vector3.new(0, -10000, 0) -- Move o marcador para longe
+        end
+    end
+end
+
+tool.Parent = Players.LocalPlayer.Backpack
+
+  	end    
+})
+
+local Section = Tab:AddSection({
+	Name = "Voar"
+})
+
+Tab:AddButton({
+	Name = "Voar V3",
+	Callback = function()
+      		loadstring(game:HttpGet('https://pastebin.com/raw/YSL3xKYU'))()
+  	end    
+})
+
+local Section = Tab:AddSection({
+	Name = "Opções - Invisibilidade"
+})
+
+Tab:AddButton({
+	Name = "Invisibilidade (Mobile)",
+	Callback = function()
+      		loadstring(game:HttpGet('https://raw.githubusercontent.com/GhostPlayer352/Test4/main/Invisible%20Gui'))()
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Invisibilidade-E (PC)",
+	Callback = function()
+      		--[[Invisibility Toggle
+
+You can find the orginal concept here: https://v3rmillion.net/showthread.php?tid=544634
+
+This method clones the character locally, teleports the real character to a safe location, then sets the character to the clone.
+Basically, your real character is in the sky while you are on the ground.
+
+
+Because of the way this works, games with a decent anti-cheat will fck this up.
+If you turn it off, you have to go to a safe place before going invisible.
+
+Written by: BitingTheDust ; https://v3rmillion.net/member.php?action=profile&uid=1628149
+]]
+--Settings:
+local ScriptStarted = false
+local Keybind = "E" --Set to whatever you want, has to be the name of a KeyCode Enum.
+local Transparency = true --Will make you slightly transparent when you are invisible. No reason to disable.
+local NoClip = false --Will make your fake character no clip.
+
+local Player = game:GetService("Players").LocalPlayer
+local RealCharacter = Player.Character or Player.CharacterAdded:Wait()
+
+local IsInvisible = false
+
+RealCharacter.Archivable = true
+local FakeCharacter = RealCharacter:Clone()
+local Part
+Part = Instance.new("Part", workspace)
+Part.Anchored = true
+Part.Size = Vector3.new(200, 1, 200)
+Part.CFrame = CFrame.new(0, -500, 0) --Set this to whatever you want, just far away from the map.
+Part.CanCollide = true
+FakeCharacter.Parent = workspace
+FakeCharacter.HumanoidRootPart.CFrame = Part.CFrame * CFrame.new(0, 5, 0)
+
+for i, v in pairs(RealCharacter:GetChildren()) do
+  if v:IsA("LocalScript") then
+      local clone = v:Clone()
+      clone.Disabled = true
+      clone.Parent = FakeCharacter
+  end
+end
+if Transparency then
+  for i, v in pairs(FakeCharacter:GetDescendants()) do
+      if v:IsA("BasePart") then
+          v.Transparency = 0.7
+      end
+  end
+end
+local CanInvis = true
+function RealCharacterDied()
+  CanInvis = false
+  RealCharacter:Destroy()
+  RealCharacter = Player.Character
+  CanInvis = true
+  isinvisible = false
+  FakeCharacter:Destroy()
+  workspace.CurrentCamera.CameraSubject = RealCharacter.Humanoid
+
+  RealCharacter.Archivable = true
+  FakeCharacter = RealCharacter:Clone()
+  Part:Destroy()
+  Part = Instance.new("Part", workspace)
+  Part.Anchored = true
+  Part.Size = Vector3.new(200, 1, 200)
+  Part.CFrame = CFrame.new(9999, 9999, 9999) --Set this to whatever you want, just far away from the map.
+  Part.CanCollide = true
+  FakeCharacter.Parent = workspace
+  FakeCharacter.HumanoidRootPart.CFrame = Part.CFrame * CFrame.new(0, 5, 0)
+
+  for i, v in pairs(RealCharacter:GetChildren()) do
+      if v:IsA("LocalScript") then
+          local clone = v:Clone()
+          clone.Disabled = true
+          clone.Parent = FakeCharacter
+      end
+  end
+  if Transparency then
+      for i, v in pairs(FakeCharacter:GetDescendants()) do
+          if v:IsA("BasePart") then
+              v.Transparency = 0.7
+          end
+      end
+  end
+ RealCharacter.Humanoid.Died:Connect(function()
+ RealCharacter:Destroy()
+ FakeCharacter:Destroy()
+ end)
+ Player.CharacterAppearanceLoaded:Connect(RealCharacterDied)
+end
+RealCharacter.Humanoid.Died:Connect(function()
+ RealCharacter:Destroy()
+ FakeCharacter:Destroy()
+ end)
+Player.CharacterAppearanceLoaded:Connect(RealCharacterDied)
+local PseudoAnchor
+game:GetService "RunService".RenderStepped:Connect(
+  function()
+      if PseudoAnchor ~= nil then
+          PseudoAnchor.CFrame = Part.CFrame * CFrame.new(0, 5, 0)
+      end
+       if NoClip then
+      FakeCharacter.Humanoid:ChangeState(11)
+       end
+  end
+)
+
+PseudoAnchor = FakeCharacter.HumanoidRootPart
+local function Invisible()
+  if IsInvisible == false then
+      local StoredCF = RealCharacter.HumanoidRootPart.CFrame
+      RealCharacter.HumanoidRootPart.CFrame = FakeCharacter.HumanoidRootPart.CFrame
+      FakeCharacter.HumanoidRootPart.CFrame = StoredCF
+      RealCharacter.Humanoid:UnequipTools()
+      Player.Character = FakeCharacter
+      workspace.CurrentCamera.CameraSubject = FakeCharacter.Humanoid
+      PseudoAnchor = RealCharacter.HumanoidRootPart
+      for i, v in pairs(FakeCharacter:GetChildren()) do
+          if v:IsA("LocalScript") then
+              v.Disabled = false
+          end
+      end
+
+      IsInvisible = true
+  else
+      local StoredCF = FakeCharacter.HumanoidRootPart.CFrame
+      FakeCharacter.HumanoidRootPart.CFrame = RealCharacter.HumanoidRootPart.CFrame
+     
+      RealCharacter.HumanoidRootPart.CFrame = StoredCF
+     
+      FakeCharacter.Humanoid:UnequipTools()
+      Player.Character = RealCharacter
+      workspace.CurrentCamera.CameraSubject = RealCharacter.Humanoid
+      PseudoAnchor = FakeCharacter.HumanoidRootPart
+      for i, v in pairs(FakeCharacter:GetChildren()) do
+          if v:IsA("LocalScript") then
+              v.Disabled = true
+          end
+      end
+      IsInvisible = false
+  end
+end
+
+game:GetService("UserInputService").InputBegan:Connect(
+  function(key, gamep)
+      if gamep then
+          return
+      end
+      if key.KeyCode.Name:lower() == Keybind:lower() and CanInvis and RealCharacter and FakeCharacter then
+          if RealCharacter:FindFirstChild("HumanoidRootPart") and FakeCharacter:FindFirstChild("HumanoidRootPart") then
+              Invisible()
+          end
+      end
+  end
+)
+local Sound = Instance.new("Sound",game:GetService("SoundService"))
+Sound.SoundId = "rbxassetid://232127604"
+Sound:Play()
+game:GetService("StarterGui"):SetCore("SendNotification",{["Title"] = "Invisible Toggle Loaded",["Text"] = "Press "..Keybind.." to become change visibility.",["Duration"] = 20,["Button1"] = "Okay."})
+  	end    
+})
+
+local Section = Tab:AddSection({
+	Name = "Espectar"
+})
+
+Tab:AddButton({
+	Name = "Espectar",
+	Callback = function()
+      		-- Função para criar e mostrar a GUI
+local function createGUI()
+    -- Criar a GUI
+    local gui = Instance.new("ScreenGui")
+    gui.Name = "SpectateGUI"
+    gui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+    local frame = Instance.new("Frame")
+    frame.Name = "MainFrame"
+    frame.Parent = gui
+    frame.Size = UDim2.new(0, 282, 0, 170)
+    frame.Position = UDim2.new(0.342556, 0, 0.327935219, 0)
+    frame.BackgroundColor3 = Color3.fromRGB(28, 28, 28) -- Alteração da cor para (28, 28, 28)
+    frame.BorderSizePixel = 0
+
+    local UICorner = Instance.new("UICorner")
+    UICorner.CornerRadius = UDim.new(0, 10)
+    UICorner.Parent = frame
+
+    local Fechar = Instance.new("TextButton")
+    Fechar.Name = "Fechar"
+    Fechar.Parent = frame
+    Fechar.Size = UDim2.new(0, 27, 0, 24)
+    Fechar.Position = UDim2.new(0.904255331, 0, 0, 0)
+    Fechar.BackgroundColor3 = Color3.fromRGB(255, 58, 61)
+    Fechar.BorderSizePixel = 0
+    Fechar.Font = Enum.Font.SourceSans
+    Fechar.Text = "X"
+    Fechar.TextColor3 = Color3.fromRGB(255, 255, 255)
+    Fechar.TextSize = 14
+
+    local NomeDoJogador = Instance.new("TextBox")
+    NomeDoJogador.Name = "NomeDoJogador"
+    NomeDoJogador.Parent = frame
+    NomeDoJogador.Size = UDim2.new(0, 200, 0, 36)
+    NomeDoJogador.Position = UDim2.new(0.145390064, 0, 0.200000003, 0)
+    NomeDoJogador.BackgroundColor3 = Color3.fromRGB(72, 72, 72)
+    NomeDoJogador.BorderSizePixel = 0
+    NomeDoJogador.Font = Enum.Font.SourceSans
+    NomeDoJogador.PlaceholderText = "Nome do Jogador"
+    NomeDoJogador.Text = ""
+    NomeDoJogador.TextColor3 = Color3.fromRGB(255, 255, 255)
+    NomeDoJogador.TextSize = 14
+
+    local UICorner_2 = Instance.new("UICorner")
+    UICorner_2.CornerRadius = UDim.new(0, 8)
+    UICorner_2.Parent = NomeDoJogador
+
+    local BotEspectar = Instance.new("TextButton")
+    BotEspectar.Name = "BotEspectar"
+    BotEspectar.Parent = frame
+    BotEspectar.Size = UDim2.new(0, 167, 0, 42)
+    BotEspectar.Position = UDim2.new(0.202127665, 0, 0.517647088, 0)
+    BotEspectar.BackgroundColor3 = Color3.fromRGB(255, 51, 54)
+    BotEspectar.BorderSizePixel = 0
+    BotEspectar.Font = Enum.Font.SourceSans
+    BotEspectar.Text = "Espectar"
+    BotEspectar.TextColor3 = Color3.fromRGB(255, 255, 255)
+    BotEspectar.TextSize = 14
+
+    local UICorner_3 = Instance.new("UICorner")
+    UICorner_3.CornerRadius = UDim.new(0, 8)
+    UICorner_3.Parent = BotEspectar
+
+    local TextLabel = Instance.new("TextLabel")
+    TextLabel.Parent = frame
+    TextLabel.Size = UDim2.new(0, 72, 0, 20)
+    TextLabel.Position = UDim2.new(0.0531914905, 0, 0.835294127, 0)
+    TextLabel.BackgroundTransparency = 1
+    TextLabel.Font = Enum.Font.SourceSans
+    TextLabel.Text = "HawkMenu"
+    TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+    TextLabel.TextSize = 14
+
+    -- Variável para rastrear se está espectando ou não
+    local isSpectating = false
+
+    -- Função para fechar a GUI
+    Fechar.MouseButton1Click:Connect(function()
+        gui:Destroy()
+    end)
+
+    -- Função para começar ou parar de espectar
+    BotEspectar.MouseButton1Click:Connect(function()
+        local playerName = NomeDoJogador.Text
+        local player = game.Players:FindFirstChild(playerName)
+        if player then
+            if isSpectating then
+                game.Workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character
+                BotEspectar.Text = "Espectar"
+            else
+                game.Workspace.CurrentCamera.CameraSubject = player.Character
+                BotEspectar.Text = "Parar de Espectar"
+            end
+            isSpectating = not isSpectating
+        else
+            print("Jogador não encontrado:", playerName)
+        end
+    end)
+
+    -- Tornar a GUI móvel
+    local dragging
+    local dragInput
+    local dragStart
+    local startPos
+
+    frame.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+            dragging = true
+            dragStart = input.Position
+            startPos = frame.Position
+
+            input.Changed:Connect(function()
+                if input.UserInputState == Enum.UserInputState.End then
+                    dragging = false
+                end
+            end)
+        end
+    end)
+
+    frame.InputChanged:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+            dragInput = input
+        end
+    end)
+
+    game:GetService("UserInputService").InputChanged:Connect(function(input)
+        if input == dragInput and dragging then
+            local delta = input.Position - dragStart
+            frame.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+        end
+    end)
+end
+
+-- Chamar a função para criar e mostrar a GUI
+createGUI()
+
+  	end    
+})
+
+-- SEPARAÇÃO!
+
+local Tab2 = Window:MakeTab({
+	Name = "Arma",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+OrionLib:Init()
