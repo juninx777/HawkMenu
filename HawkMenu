@@ -346,6 +346,9 @@ local Section = Tab:AddSection({
 	Name = "Espectar"
 })
 
+-- Variável para rastrear se está espectando ou não
+local isSpectating = false
+
 -- Função para criar a GUI de espectador
 local function createSpectatorGUI()
     -- Função para começar ou parar de espectar
@@ -354,10 +357,8 @@ local function createSpectatorGUI()
         if player then
             if isSpectating then
                 game.Workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character
-                isSpectating = false
             else
                 game.Workspace.CurrentCamera.CameraSubject = player.Character
-                isSpectating = true
             end
         else
             print("Jogador não encontrado:", playerName)
@@ -370,7 +371,9 @@ local function createSpectatorGUI()
         Default = "Nome do Jogador",
         TextDisappear = true,
         Callback = function(playerName)
-            toggleSpectate(playerName)
+            if Tab:GetToggleValue("Espectar") then
+                toggleSpectate(playerName)
+            end
         end	  
     })
 
@@ -383,14 +386,15 @@ local function createSpectatorGUI()
                 toggleSpectate(Tab:GetTextboxValue("PlayerName"))
             else
                 game.Workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character
-                isSpectating = false
             end
+            isSpectating = isToggling
         end    
     })
 end
 
 -- Chamar a função para criar e mostrar a GUI de espectador
 createSpectatorGUI()
+
 
 
 -- SEPARAÇÃO!
