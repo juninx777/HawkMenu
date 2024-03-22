@@ -178,7 +178,7 @@ Tab:AddButton({
 })
 
 Tab:AddButton({
-	Name = "Invisibilidade-E (PC)",
+	Name = "Invisibilidade - E (PC)",
 	Callback = function()
       		--[[Invisibility Toggle
 
@@ -376,7 +376,7 @@ local function createSpectatorGUI()
 
     -- Criar uma caixa de seleção para iniciar/parar de observar
     Tab:AddToggle({
-        Name = "Espectar|Parar",
+        Name = "Espectar/Parar",
         Default = false,
         Callback = function(isToggling)
             if isToggling then
