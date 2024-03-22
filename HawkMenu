@@ -393,7 +393,6 @@ end
 -- Chamar a função para criar e mostrar a GUI de espectador
 createSpectatorGUI()
 
-
 local Section = Tab:AddSection({
 	Name = "Velocidade"
 })
@@ -434,7 +433,6 @@ local slider = Tab:AddSlider({
 		adjustPlayerSpeed(value)
 	end    
 })
-
 
 -- SEPARAÇÃO!
 
