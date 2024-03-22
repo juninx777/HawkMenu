@@ -390,6 +390,10 @@ local function createSpectatorGUI()
 end
 
 
+-- Chamar a função para criar e mostrar a GUI de espectador
+createSpectatorGUI()
+
+
 local Section = Tab:AddSection({
 	Name = "Velocidade"
 })
@@ -421,7 +425,7 @@ end
 local slider = Tab:AddSlider({
 	Name = "Velocidade",
 	Min = 0,
-	Max = 20,
+	Max = 500,
 	Default = 5,
 	Color = Color3.fromRGB(255,255,255),
 	Increment = 1,
@@ -431,9 +435,6 @@ local slider = Tab:AddSlider({
 	end    
 })
 
-
--- Chamar a função para criar e mostrar a GUI de espectador
-createSpectatorGUI()
 
 -- SEPARAÇÃO!
 
