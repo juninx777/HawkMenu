@@ -12,147 +12,147 @@ Tab:AddButton({
 	Name = "Tpway - Mobile",
 	Callback = function()
 
-local Players = game:GetService("Players")
-local UIS = game:GetService("UserInputService")
+		local Players = game:GetService("Players")
+		local UIS = game:GetService("UserInputService")
 
-local mouse = Players.LocalPlayer:GetMouse()
-local tool = Instance.new("Tool")
-tool.RequiresHandle = false
-tool.Name = "Tpway Mobile (HawkMenu)"
+		local mouse = Players.LocalPlayer:GetMouse()
+		local tool = Instance.new("Tool")
+		tool.RequiresHandle = false
+		tool.Name = "Tpway Mobile (HawkMenu)"
 
-local teleportMarker = game.Workspace:FindFirstChild("TeleportMarker")
-if not teleportMarker then
-    teleportMarker = Instance.new("Part")
-    teleportMarker.Name = "TeleportMarker"
-    teleportMarker.Size = Vector3.new(1, 1, 1)
-    teleportMarker.Anchored = true
-    teleportMarker.CanCollide = false
-    teleportMarker.Shape = Enum.PartType.Ball
-    teleportMarker.Color = Color3.fromRGB(255, 0, 0)
-    teleportMarker.Transparency = 0.5
-    teleportMarker.Parent = game.Workspace
-end
+		local teleportMarker = game.Workspace:FindFirstChild("TeleportMarker")
+		if not teleportMarker then
+			teleportMarker = Instance.new("Part")
+			teleportMarker.Name = "TeleportMarker"
+			teleportMarker.Size = Vector3.new(1, 1, 1)
+			teleportMarker.Anchored = true
+			teleportMarker.CanCollide = false
+			teleportMarker.Shape = Enum.PartType.Ball
+			teleportMarker.Color = Color3.fromRGB(255, 0, 0)
+			teleportMarker.Transparency = 0.5
+			teleportMarker.Parent = game.Workspace
+		end
 
-local teleportButton
-local teleportButtonVisible = false
+		local teleportButton
+		local teleportButtonVisible = false
 
--- Create teleport GUI
-local teleportScreenGui = Instance.new("ScreenGui")
-teleportScreenGui.Parent = game.Players.LocalPlayer.PlayerGui
+		-- Create teleport GUI
+		local teleportScreenGui = Instance.new("ScreenGui")
+		teleportScreenGui.Parent = game.Players.LocalPlayer.PlayerGui
 
-teleportButton = Instance.new("TextButton")
-teleportButton.Text = "Tpway"
-teleportButton.Size = UDim2.new(0, 100, 0, 50)
-teleportButton.Position = UDim2.new(0.85, -50, 0.1, 0) -- Posição ajustada
-teleportButton.Visible = false
-teleportButton.Parent = teleportScreenGui
+		teleportButton = Instance.new("TextButton")
+		teleportButton.Text = "Tpway"
+		teleportButton.Size = UDim2.new(0, 100, 0, 50)
+		teleportButton.Position = UDim2.new(0.85, -50, 0.1, 0) -- Posição ajustada
+		teleportButton.Visible = false
+		teleportButton.Parent = teleportScreenGui
 
--- Move the button
-local isDragging = false
-local offset = Vector2.new(0, 0)
+		-- Move the button
+		local isDragging = false
+		local offset = Vector2.new(0, 0)
 
-teleportButton.MouseButton1Down:Connect(function()
-    isDragging = true
-    local startPos = UIS:GetMouseLocation()
-    offset = startPos - teleportButton.Position
-end)
+		teleportButton.MouseButton1Down:Connect(function()
+			isDragging = true
+			local startPos = UIS:GetMouseLocation()
+			offset = startPos - teleportButton.Position
+		end)
 
-UIS.InputChanged:Connect(function(input)
-    if isDragging and input.UserInputType == Enum.UserInputType.MouseMovement then
-        local newPos = UIS:GetMouseLocation() - offset
-        teleportButton.Position = UDim2.new(0, newPos.X, 0, newPos.Y)
-    end
-end)
+		UIS.InputChanged:Connect(function(input)
+			if isDragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+				local newPos = UIS:GetMouseLocation() - offset
+				teleportButton.Position = UDim2.new(0, newPos.X, 0, newPos.Y)
+			end
+		end)
 
-UIS.InputEnded:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseButton1 then
-        isDragging = false
-    end
-end)
+		UIS.InputEnded:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseButton1 then
+				isDragging = false
+			end
+		end)
 
-teleportButton.MouseButton1Click:Connect(function()
-    Teleport()
-end)
+		teleportButton.MouseButton1Click:Connect(function()
+			Teleport()
+		end)
 
-function Teleport()
-    local character = Players.LocalPlayer.Character
-    if character then
-        local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
-        if humanoidRootPart then
-            local pos = teleportMarker.Position
-            humanoidRootPart.CFrame = CFrame.new(pos)
-            teleportMarker.Position = Vector3.new(0, -10000, 0) -- Move o marcador para longe
-            teleportButtonVisible = false
-            teleportButton.Visible = false
-        end
-    end
-end
+		function Teleport()
+			local character = Players.LocalPlayer.Character
+			if character then
+				local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
+				if humanoidRootPart then
+					local pos = teleportMarker.Position
+					humanoidRootPart.CFrame = CFrame.new(pos)
+					teleportMarker.Position = Vector3.new(0, -10000, 0) -- Move o marcador para longe
+					teleportButtonVisible = false
+					teleportButton.Visible = false
+				end
+			end
+		end
 
-tool.Activated:Connect(function()
-    local pos = mouse.Hit.p
-    teleportMarker.Position = pos
-    
-    if UIS.TouchEnabled then
-        teleportButtonVisible = true
-        teleportButton.Visible = true
-    end
-end)
+		tool.Activated:Connect(function()
+			local pos = mouse.Hit.p
+			teleportMarker.Position = pos
 
-tool.Parent = Players.LocalPlayer.Backpack
+			if UIS.TouchEnabled then
+				teleportButtonVisible = true
+				teleportButton.Visible = true
+			end
+		end)
 
-  	end    
+		tool.Parent = Players.LocalPlayer.Backpack
+
+	end    
 })
 
 Tab:AddButton({
 	Name = "Tpway - PC (Q)",
 	Callback = function()
-      		local Players = game:GetService("Players")
-local UIS = game:GetService("UserInputService")
+		local Players = game:GetService("Players")
+		local UIS = game:GetService("UserInputService")
 
-local mouse = Players.LocalPlayer:GetMouse()
-local tool = Instance.new("Tool")
-tool.RequiresHandle = false
-tool.Name = "Tpway(Q)"
+		local mouse = Players.LocalPlayer:GetMouse()
+		local tool = Instance.new("Tool")
+		tool.RequiresHandle = false
+		tool.Name = "Tpway(Q)"
 
-local teleportMarker = game.Workspace:FindFirstChild("TeleportMarker")
-if not teleportMarker then
-    teleportMarker = Instance.new("Part")
-    teleportMarker.Name = "TeleportMarker"
-    teleportMarker.Size = Vector3.new(1, 1, 1)
-    teleportMarker.Anchored = true
-    teleportMarker.CanCollide = false
-    teleportMarker.Shape = Enum.PartType.Ball
-    teleportMarker.Color = Color3.fromRGB(255, 0, 0)
-    teleportMarker.Transparency = 0.5
-    teleportMarker.Parent = game.Workspace
-end
+		local teleportMarker = game.Workspace:FindFirstChild("TeleportMarker")
+		if not teleportMarker then
+			teleportMarker = Instance.new("Part")
+			teleportMarker.Name = "TeleportMarker"
+			teleportMarker.Size = Vector3.new(1, 1, 1)
+			teleportMarker.Anchored = true
+			teleportMarker.CanCollide = false
+			teleportMarker.Shape = Enum.PartType.Ball
+			teleportMarker.Color = Color3.fromRGB(255, 0, 0)
+			teleportMarker.Transparency = 0.5
+			teleportMarker.Parent = game.Workspace
+		end
 
-tool.Activated:Connect(function()
-    local pos = mouse.Hit.p
-    teleportMarker.Position = pos
-end)
+		tool.Activated:Connect(function()
+			local pos = mouse.Hit.p
+			teleportMarker.Position = pos
+		end)
 
-UIS.InputBegan:Connect(function(input)
-    if input.KeyCode == Enum.KeyCode.Q then
-        Teleport()
-    end
-end)
+		UIS.InputBegan:Connect(function(input)
+			if input.KeyCode == Enum.KeyCode.Q then
+				Teleport()
+			end
+		end)
 
-function Teleport()
-    local character = Players.LocalPlayer.Character
-    if character then
-        local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
-        if humanoidRootPart then
-            local pos = teleportMarker.Position
-            humanoidRootPart.CFrame = CFrame.new(pos)
-            teleportMarker.Position = Vector3.new(0, -10000, 0) -- Move o marcador para longe
-        end
-    end
-end
+		function Teleport()
+			local character = Players.LocalPlayer.Character
+			if character then
+				local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
+				if humanoidRootPart then
+					local pos = teleportMarker.Position
+					humanoidRootPart.CFrame = CFrame.new(pos)
+					teleportMarker.Position = Vector3.new(0, -10000, 0) -- Move o marcador para longe
+				end
+			end
+		end
 
-tool.Parent = Players.LocalPlayer.Backpack
+		tool.Parent = Players.LocalPlayer.Backpack
 
-  	end    
+	end    
 })
 
 local Section = Tab:AddSection({
@@ -162,8 +162,8 @@ local Section = Tab:AddSection({
 Tab:AddButton({
 	Name = "Voar V3",
 	Callback = function()
-      		loadstring(game:HttpGet('https://pastebin.com/raw/YSL3xKYU'))()
-  	end    
+		loadstring(game:HttpGet('https://pastebin.com/raw/YSL3xKYU'))()
+	end    
 })
 
 local Section = Tab:AddSection({
@@ -173,8 +173,8 @@ local Section = Tab:AddSection({
 Tab:AddButton({
 	Name = "Invisibilidade (Mobile)",
 	Callback = function()
-      		loadstring(game:HttpGet('https://raw.githubusercontent.com/GhostPlayer352/Test4/main/Invisible%20Gui'))()
-  	end    
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/GhostPlayer352/Test4/main/Invisible%20Gui'))()
+	end    
 })
 
 Tab:AddButton({
@@ -193,153 +193,153 @@ If you turn it off, you have to go to a safe place before going invisible.
 
 Written by: BitingTheDust ; https://v3rmillion.net/member.php?action=profile&uid=1628149
 ]]
---Settings:
-local ScriptStarted = false
-local Keybind = "E" --Set to whatever you want, has to be the name of a KeyCode Enum.
-local Transparency = true --Will make you slightly transparent when you are invisible. No reason to disable.
-local NoClip = false --Will make your fake character no clip.
+		--Settings:
+		local ScriptStarted = false
+		local Keybind = "E" --Set to whatever you want, has to be the name of a KeyCode Enum.
+		local Transparency = true --Will make you slightly transparent when you are invisible. No reason to disable.
+		local NoClip = false --Will make your fake character no clip.
 
-local Player = game:GetService("Players").LocalPlayer
-local RealCharacter = Player.Character or Player.CharacterAdded:Wait()
+		local Player = game:GetService("Players").LocalPlayer
+		local RealCharacter = Player.Character or Player.CharacterAdded:Wait()
 
-local IsInvisible = false
+		local IsInvisible = false
 
-RealCharacter.Archivable = true
-local FakeCharacter = RealCharacter:Clone()
-local Part
-Part = Instance.new("Part", workspace)
-Part.Anchored = true
-Part.Size = Vector3.new(200, 1, 200)
-Part.CFrame = CFrame.new(0, -500, 0) --Set this to whatever you want, just far away from the map.
-Part.CanCollide = true
-FakeCharacter.Parent = workspace
-FakeCharacter.HumanoidRootPart.CFrame = Part.CFrame * CFrame.new(0, 5, 0)
+		RealCharacter.Archivable = true
+		local FakeCharacter = RealCharacter:Clone()
+		local Part
+		Part = Instance.new("Part", workspace)
+		Part.Anchored = true
+		Part.Size = Vector3.new(200, 1, 200)
+		Part.CFrame = CFrame.new(0, -500, 0) --Set this to whatever you want, just far away from the map.
+		Part.CanCollide = true
+		FakeCharacter.Parent = workspace
+		FakeCharacter.HumanoidRootPart.CFrame = Part.CFrame * CFrame.new(0, 5, 0)
 
-for i, v in pairs(RealCharacter:GetChildren()) do
-  if v:IsA("LocalScript") then
-      local clone = v:Clone()
-      clone.Disabled = true
-      clone.Parent = FakeCharacter
-  end
-end
-if Transparency then
-  for i, v in pairs(FakeCharacter:GetDescendants()) do
-      if v:IsA("BasePart") then
-          v.Transparency = 0.7
-      end
-  end
-end
-local CanInvis = true
-function RealCharacterDied()
-  CanInvis = false
-  RealCharacter:Destroy()
-  RealCharacter = Player.Character
-  CanInvis = true
-  isinvisible = false
-  FakeCharacter:Destroy()
-  workspace.CurrentCamera.CameraSubject = RealCharacter.Humanoid
+		for i, v in pairs(RealCharacter:GetChildren()) do
+			if v:IsA("LocalScript") then
+				local clone = v:Clone()
+				clone.Disabled = true
+				clone.Parent = FakeCharacter
+			end
+		end
+		if Transparency then
+			for i, v in pairs(FakeCharacter:GetDescendants()) do
+				if v:IsA("BasePart") then
+					v.Transparency = 0.7
+				end
+			end
+		end
+		local CanInvis = true
+		function RealCharacterDied()
+			CanInvis = false
+			RealCharacter:Destroy()
+			RealCharacter = Player.Character
+			CanInvis = true
+			isinvisible = false
+			FakeCharacter:Destroy()
+			workspace.CurrentCamera.CameraSubject = RealCharacter.Humanoid
 
-  RealCharacter.Archivable = true
-  FakeCharacter = RealCharacter:Clone()
-  Part:Destroy()
-  Part = Instance.new("Part", workspace)
-  Part.Anchored = true
-  Part.Size = Vector3.new(200, 1, 200)
-  Part.CFrame = CFrame.new(9999, 9999, 9999) --Set this to whatever you want, just far away from the map.
-  Part.CanCollide = true
-  FakeCharacter.Parent = workspace
-  FakeCharacter.HumanoidRootPart.CFrame = Part.CFrame * CFrame.new(0, 5, 0)
+			RealCharacter.Archivable = true
+			FakeCharacter = RealCharacter:Clone()
+			Part:Destroy()
+			Part = Instance.new("Part", workspace)
+			Part.Anchored = true
+			Part.Size = Vector3.new(200, 1, 200)
+			Part.CFrame = CFrame.new(9999, 9999, 9999) --Set this to whatever you want, just far away from the map.
+			Part.CanCollide = true
+			FakeCharacter.Parent = workspace
+			FakeCharacter.HumanoidRootPart.CFrame = Part.CFrame * CFrame.new(0, 5, 0)
 
-  for i, v in pairs(RealCharacter:GetChildren()) do
-      if v:IsA("LocalScript") then
-          local clone = v:Clone()
-          clone.Disabled = true
-          clone.Parent = FakeCharacter
-      end
-  end
-  if Transparency then
-      for i, v in pairs(FakeCharacter:GetDescendants()) do
-          if v:IsA("BasePart") then
-              v.Transparency = 0.7
-          end
-      end
-  end
- RealCharacter.Humanoid.Died:Connect(function()
- RealCharacter:Destroy()
- FakeCharacter:Destroy()
- end)
- Player.CharacterAppearanceLoaded:Connect(RealCharacterDied)
-end
-RealCharacter.Humanoid.Died:Connect(function()
- RealCharacter:Destroy()
- FakeCharacter:Destroy()
- end)
-Player.CharacterAppearanceLoaded:Connect(RealCharacterDied)
-local PseudoAnchor
-game:GetService "RunService".RenderStepped:Connect(
-  function()
-      if PseudoAnchor ~= nil then
-          PseudoAnchor.CFrame = Part.CFrame * CFrame.new(0, 5, 0)
-      end
-       if NoClip then
-      FakeCharacter.Humanoid:ChangeState(11)
-       end
-  end
-)
+			for i, v in pairs(RealCharacter:GetChildren()) do
+				if v:IsA("LocalScript") then
+					local clone = v:Clone()
+					clone.Disabled = true
+					clone.Parent = FakeCharacter
+				end
+			end
+			if Transparency then
+				for i, v in pairs(FakeCharacter:GetDescendants()) do
+					if v:IsA("BasePart") then
+						v.Transparency = 0.7
+					end
+				end
+			end
+			RealCharacter.Humanoid.Died:Connect(function()
+				RealCharacter:Destroy()
+				FakeCharacter:Destroy()
+			end)
+			Player.CharacterAppearanceLoaded:Connect(RealCharacterDied)
+		end
+		RealCharacter.Humanoid.Died:Connect(function()
+			RealCharacter:Destroy()
+			FakeCharacter:Destroy()
+		end)
+		Player.CharacterAppearanceLoaded:Connect(RealCharacterDied)
+		local PseudoAnchor
+		game:GetService "RunService".RenderStepped:Connect(
+			function()
+				if PseudoAnchor ~= nil then
+					PseudoAnchor.CFrame = Part.CFrame * CFrame.new(0, 5, 0)
+				end
+				if NoClip then
+					FakeCharacter.Humanoid:ChangeState(11)
+				end
+			end
+		)
 
-PseudoAnchor = FakeCharacter.HumanoidRootPart
-local function Invisible()
-  if IsInvisible == false then
-      local StoredCF = RealCharacter.HumanoidRootPart.CFrame
-      RealCharacter.HumanoidRootPart.CFrame = FakeCharacter.HumanoidRootPart.CFrame
-      FakeCharacter.HumanoidRootPart.CFrame = StoredCF
-      RealCharacter.Humanoid:UnequipTools()
-      Player.Character = FakeCharacter
-      workspace.CurrentCamera.CameraSubject = FakeCharacter.Humanoid
-      PseudoAnchor = RealCharacter.HumanoidRootPart
-      for i, v in pairs(FakeCharacter:GetChildren()) do
-          if v:IsA("LocalScript") then
-              v.Disabled = false
-          end
-      end
+		PseudoAnchor = FakeCharacter.HumanoidRootPart
+		local function Invisible()
+			if IsInvisible == false then
+				local StoredCF = RealCharacter.HumanoidRootPart.CFrame
+				RealCharacter.HumanoidRootPart.CFrame = FakeCharacter.HumanoidRootPart.CFrame
+				FakeCharacter.HumanoidRootPart.CFrame = StoredCF
+				RealCharacter.Humanoid:UnequipTools()
+				Player.Character = FakeCharacter
+				workspace.CurrentCamera.CameraSubject = FakeCharacter.Humanoid
+				PseudoAnchor = RealCharacter.HumanoidRootPart
+				for i, v in pairs(FakeCharacter:GetChildren()) do
+					if v:IsA("LocalScript") then
+						v.Disabled = false
+					end
+				end
 
-      IsInvisible = true
-  else
-      local StoredCF = FakeCharacter.HumanoidRootPart.CFrame
-      FakeCharacter.HumanoidRootPart.CFrame = RealCharacter.HumanoidRootPart.CFrame
-     
-      RealCharacter.HumanoidRootPart.CFrame = StoredCF
-     
-      FakeCharacter.Humanoid:UnequipTools()
-      Player.Character = RealCharacter
-      workspace.CurrentCamera.CameraSubject = RealCharacter.Humanoid
-      PseudoAnchor = FakeCharacter.HumanoidRootPart
-      for i, v in pairs(FakeCharacter:GetChildren()) do
-          if v:IsA("LocalScript") then
-              v.Disabled = true
-          end
-      end
-      IsInvisible = false
-  end
-end
+				IsInvisible = true
+			else
+				local StoredCF = FakeCharacter.HumanoidRootPart.CFrame
+				FakeCharacter.HumanoidRootPart.CFrame = RealCharacter.HumanoidRootPart.CFrame
 
-game:GetService("UserInputService").InputBegan:Connect(
-  function(key, gamep)
-      if gamep then
-          return
-      end
-      if key.KeyCode.Name:lower() == Keybind:lower() and CanInvis and RealCharacter and FakeCharacter then
-          if RealCharacter:FindFirstChild("HumanoidRootPart") and FakeCharacter:FindFirstChild("HumanoidRootPart") then
-              Invisible()
-          end
-      end
-  end
-)
-local Sound = Instance.new("Sound",game:GetService("SoundService"))
-Sound.SoundId = "rbxassetid://232127604"
-Sound:Play()
-game:GetService("StarterGui"):SetCore("SendNotification",{["Title"] = "Invisible Toggle Loaded",["Text"] = "Press "..Keybind.." to become change visibility.",["Duration"] = 20,["Button1"] = "Okay."})
-  	end    
+				RealCharacter.HumanoidRootPart.CFrame = StoredCF
+
+				FakeCharacter.Humanoid:UnequipTools()
+				Player.Character = RealCharacter
+				workspace.CurrentCamera.CameraSubject = RealCharacter.Humanoid
+				PseudoAnchor = FakeCharacter.HumanoidRootPart
+				for i, v in pairs(FakeCharacter:GetChildren()) do
+					if v:IsA("LocalScript") then
+						v.Disabled = true
+					end
+				end
+				IsInvisible = false
+			end
+		end
+
+		game:GetService("UserInputService").InputBegan:Connect(
+		function(key, gamep)
+			if gamep then
+				return
+			end
+			if key.KeyCode.Name:lower() == Keybind:lower() and CanInvis and RealCharacter and FakeCharacter then
+				if RealCharacter:FindFirstChild("HumanoidRootPart") and FakeCharacter:FindFirstChild("HumanoidRootPart") then
+					Invisible()
+				end
+			end
+		end
+		)
+		local Sound = Instance.new("Sound",game:GetService("SoundService"))
+		Sound.SoundId = "rbxassetid://232127604"
+		Sound:Play()
+		game:GetService("StarterGui"):SetCore("SendNotification",{["Title"] = "Invisible Toggle Loaded",["Text"] = "Press "..Keybind.." to become change visibility.",["Duration"] = 20,["Button1"] = "Okay."})
+	end    
 })
 
 local Section = Tab:AddSection({
@@ -348,46 +348,89 @@ local Section = Tab:AddSection({
 
 -- Função para criar a GUI de espectador
 local function createSpectatorGUI()
-    -- Função para começar ou parar de espectar
-    local function toggleSpectate(playerName)
-        local player = game.Players:FindFirstChild(playerName)
-        if player then
-            if isSpectating then
-                game.Workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character
-                isSpectating = false
-            else
-                game.Workspace.CurrentCamera.CameraSubject = player.Character
-                isSpectating = true
-            end
-        else
-            print("Jogador não encontrado:", playerName)
-        end
-    end
+	-- Função para começar ou parar de espectar
+	local function toggleSpectate(playerName)
+		local player = game.Players:FindFirstChild(playerName)
+		if player then
+			if isSpectating then
+				game.Workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character
+				isSpectating = false
+			else
+				game.Workspace.CurrentCamera.CameraSubject = player.Character
+				isSpectating = true
+			end
+		else
+			print("Jogador não encontrado:", playerName)
+		end
+	end
 
-    -- Criar um TextBox para inserir o nome do jogador a ser observado
-    Tab:AddTextbox({
-        Name = "Nome do Jogador",
-        Default = "Espectar",
-        TextDisappear = true,
-        Callback = function(playerName)
-            toggleSpectate(playerName)
-        end	  
-    })
+	-- Criar um TextBox para inserir o nome do jogador a ser observado
+	Tab:AddTextbox({
+		Name = "Nome do Jogador",
+		Default = "Espectar",
+		TextDisappear = true,
+		Callback = function(playerName)
+			toggleSpectate(playerName)
+		end	  
+	})
 
-    -- Criar uma caixa de seleção para iniciar/parar de observar
-    Tab:AddToggle({
-        Name = "Espectar/Parar",
-        Default = false,
-        Callback = function(isToggling)
-            if isToggling then
-                toggleSpectate(Tab:GetTextboxValue("PlayerName"))
-            else
-                game.Workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character
-                isSpectating = false
-            end
-        end    
-    })
+	-- Criar uma caixa de seleção para iniciar/parar de observar
+	Tab:AddToggle({
+		Name = "Espectar/Parar",
+		Default = false,
+		Callback = function(isToggling)
+			if isToggling then
+				toggleSpectate(Tab:GetTextboxValue("PlayerName"))
+			else
+				game.Workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character
+				isSpectating = false
+			end
+		end    
+	})
 end
+
+
+local Section = Tab:AddSection({
+	Name = "Velocidade"
+})
+
+
+-- Função para ajustar a velocidade do jogador
+local function adjustPlayerSpeed(value)
+	-- Defina a velocidade máxima permitida
+	local maxSpeed = 500
+
+	-- Obtenha o jogador local
+	local player = game.Players.LocalPlayer
+
+	-- Verifique se o jogador existe e tem um personagem
+	if player and player.Character then
+		-- Obtenha o objeto Humanoid do personagem
+		local humanoid = player.Character:FindFirstChildOfClass("Humanoid")
+		if humanoid then
+			-- Calcule a velocidade com base no valor do controle deslizante
+			local speed = math.min(value * 25, maxSpeed) -- Ajuste conforme necessário
+
+			-- Atualize a velocidade do jogador
+			humanoid.WalkSpeed = speed
+		end
+	end
+end
+
+-- Adicione o controle deslizante
+local slider = Tab:AddSlider({
+	Name = "Velocidade",
+	Min = 0,
+	Max = 20,
+	Default = 5,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 1,
+	ValueName = "Velocidade",
+	Callback = function(value)
+		adjustPlayerSpeed(value)
+	end    
+})
+
 
 -- Chamar a função para criar e mostrar a GUI de espectador
 createSpectatorGUI()
