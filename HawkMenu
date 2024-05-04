@@ -1,443 +1,1104 @@
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-local Window = OrionLib:MakeWindow({Name = "HawkMenu", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
-local Tab = Window:MakeTab({
-	Name = "Jogador",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
-local Section = Tab:AddSection({
-	Name = "Opções - Tpway"
-})
-Tab:AddButton({
-	Name = "Tpway - Mobile",
-	Callback = function()
+-- Gui to Lua
+-- Version: 3.2
 
-		local Players = game:GetService("Players")
-		local UIS = game:GetService("UserInputService")
+-- Instances:
 
-		local mouse = Players.LocalPlayer:GetMouse()
-		local tool = Instance.new("Tool")
-		tool.RequiresHandle = false
-		tool.Name = "Tpway Mobile (HawkMenu)"
+local HawkMenu = Instance.new("ScreenGui")
+local interface = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local Prender = Instance.new("Frame")
+local UICorner_2 = Instance.new("UICorner")
+local NomePreso = Instance.new("TextBox")
+local UICorner_3 = Instance.new("UICorner")
+local NomePresoTxt = Instance.new("TextLabel")
+local TempoPresoTxt = Instance.new("TextLabel")
+local TempoPreso = Instance.new("TextBox")
+local UICorner_4 = Instance.new("UICorner")
+local Minutos = Instance.new("TextLabel")
+local MotivoPreso = Instance.new("TextBox")
+local UICorner_5 = Instance.new("UICorner")
+local MotivoPresoTxt = Instance.new("TextLabel")
+local BotaoPrender = Instance.new("TextButton")
+local UICorner_6 = Instance.new("UICorner")
+local outro = Instance.new("Frame")
+local UICorner_7 = Instance.new("UICorner")
+local outro_2 = Instance.new("Frame")
+local UICorner_8 = Instance.new("UICorner")
+local outro_3 = Instance.new("Frame")
+local UICorner_9 = Instance.new("UICorner")
+local RealizarApreenso = Instance.new("TextLabel")
+local Info = Instance.new("TextLabel")
+local Infraes = Instance.new("TextLabel")
+local TempoDprisao = Instance.new("TextLabel")
+local Painel = Instance.new("Frame")
+local UICorner_10 = Instance.new("UICorner")
+local aba2 = Instance.new("Frame")
+local UICorner_11 = Instance.new("UICorner")
+local ArmasButton = Instance.new("TextButton")
+local VisualButton = Instance.new("TextButton")
+local TrollsButton = Instance.new("TextButton")
+local DinheiroButton = Instance.new("TextButton")
+local VeiculoButton = Instance.new("TextButton")
+local InicioButton = Instance.new("TextButton")
+local Inicio = Instance.new("ImageButton")
+local NomeJogador = Instance.new("TextLabel")
+local Troll = Instance.new("ImageButton")
+local NameTrolls = Instance.new("TextLabel")
+local Visual = Instance.new("ImageButton")
+local NameVisual = Instance.new("TextLabel")
+local Dinheiro = Instance.new("ImageButton")
+local NameDinheiro = Instance.new("TextLabel")
+local Arma = Instance.new("ImageButton")
+local NameArma = Instance.new("TextLabel")
+local Veiculo = Instance.new("ImageButton")
+local NameVeiculo = Instance.new("TextLabel")
+local Pesquisa = Instance.new("Frame")
+local UICorner_12 = Instance.new("UICorner")
+local ConsultarTxt = Instance.new("TextLabel")
+local LupaPesquisa = Instance.new("ImageButton")
+local Consultar = Instance.new("TextBox")
+local UICorner_13 = Instance.new("UICorner")
+local Inicio_2 = Instance.new("Frame")
+local UICorner_14 = Instance.new("UICorner")
+local Opes = Instance.new("Frame")
+local UICorner_15 = Instance.new("UICorner")
+local NomeOpes = Instance.new("TextLabel")
+local Inicio_3 = Instance.new("Frame")
+local UICorner_16 = Instance.new("UICorner")
+local NoclipButton = Instance.new("TextButton")
+local UICorner_17 = Instance.new("UICorner")
+local InvisibilidadeButton = Instance.new("TextButton")
+local UICorner_18 = Instance.new("UICorner")
+local Outros = Instance.new("Frame")
+local UICorner_19 = Instance.new("UICorner")
+local NomeOutros = Instance.new("TextLabel")
+local Inicio_4 = Instance.new("Frame")
+local UICorner_20 = Instance.new("UICorner")
+local Revistar = Instance.new("Frame")
+local UICorner_21 = Instance.new("UICorner")
+local RevistarTxt = Instance.new("TextLabel")
+local NomeRevistar = Instance.new("TextBox")
+local UICorner_22 = Instance.new("UICorner")
+local BotaoRevistar = Instance.new("TextButton")
+local UICorner_23 = Instance.new("UICorner")
+local Info_2 = Instance.new("TextLabel")
+local outro_4 = Instance.new("Frame")
+local UICorner_24 = Instance.new("UICorner")
+local aba3 = Instance.new("Frame")
+local UICorner_25 = Instance.new("UICorner")
+local ItensEncontrados = Instance.new("TextLabel")
+local Itens = Instance.new("TextLabel")
+local RemoverItens = Instance.new("TextButton")
+local UICorner_26 = Instance.new("UICorner")
 
-		local teleportMarker = game.Workspace:FindFirstChild("TeleportMarker")
-		if not teleportMarker then
-			teleportMarker = Instance.new("Part")
-			teleportMarker.Name = "TeleportMarker"
-			teleportMarker.Size = Vector3.new(1, 1, 1)
-			teleportMarker.Anchored = true
-			teleportMarker.CanCollide = false
-			teleportMarker.Shape = Enum.PartType.Ball
-			teleportMarker.Color = Color3.fromRGB(255, 0, 0)
-			teleportMarker.Transparency = 0.5
-			teleportMarker.Parent = game.Workspace
+--Properties:
+
+HawkMenu.Name = "HawkMenu"
+HawkMenu.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+HawkMenu.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+interface.Name = "interface"
+interface.Parent = HawkMenu
+interface.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+interface.BorderColor3 = Color3.fromRGB(0, 0, 0)
+interface.BorderSizePixel = 0
+interface.Position = UDim2.new(0.263410807, 0, 0.157894731, 0)
+interface.Size = UDim2.new(0, 460, 0, 371)
+interface.Visible = false
+interface.ZIndex = 2
+
+UICorner.Parent = interface
+
+Prender.Name = "Prender"
+Prender.Parent = interface
+Prender.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+Prender.BackgroundTransparency = 1.000
+Prender.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Prender.BorderSizePixel = 0
+Prender.Position = UDim2.new(0.000406082807, 0, 0.22191754, 0)
+Prender.Size = UDim2.new(0, 497, 0, 287)
+Prender.ZIndex = 3
+
+UICorner_2.Parent = Prender
+
+NomePreso.Name = "NomePreso"
+NomePreso.Parent = Prender
+NomePreso.BackgroundColor3 = Color3.fromRGB(77, 77, 77)
+NomePreso.BackgroundTransparency = 0.650
+NomePreso.BorderColor3 = Color3.fromRGB(0, 0, 0)
+NomePreso.BorderSizePixel = 0
+NomePreso.Position = UDim2.new(0.0303786211, 0, -0.00512216799, 0)
+NomePreso.Size = UDim2.new(0, 470, 0, 49)
+NomePreso.ZIndex = 3
+NomePreso.Font = Enum.Font.FredokaOne
+NomePreso.PlaceholderText = "Aqui"
+NomePreso.Text = ""
+NomePreso.TextColor3 = Color3.fromRGB(255, 255, 255)
+NomePreso.TextSize = 15.000
+NomePreso.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+NomePreso.TextWrapped = true
+
+UICorner_3.Parent = NomePreso
+
+NomePresoTxt.Name = "NomePresoTxt"
+NomePresoTxt.Parent = Prender
+NomePresoTxt.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+NomePresoTxt.BackgroundTransparency = 1.000
+NomePresoTxt.BorderColor3 = Color3.fromRGB(0, 0, 0)
+NomePresoTxt.BorderSizePixel = 0
+NomePresoTxt.Position = UDim2.new(0.0302228406, 0, -0.00516353175, 0)
+NomePresoTxt.Size = UDim2.new(0, 64, 0, 16)
+NomePresoTxt.ZIndex = 3
+NomePresoTxt.Font = Enum.Font.Unknown
+NomePresoTxt.Text = "Suspeito"
+NomePresoTxt.TextColor3 = Color3.fromRGB(255, 255, 255)
+NomePresoTxt.TextSize = 13.000
+
+TempoPresoTxt.Name = "TempoPresoTxt"
+TempoPresoTxt.Parent = Prender
+TempoPresoTxt.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TempoPresoTxt.BackgroundTransparency = 1.000
+TempoPresoTxt.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TempoPresoTxt.BorderSizePixel = 0
+TempoPresoTxt.Position = UDim2.new(0.0285697952, 0, 0.700092673, 0)
+TempoPresoTxt.Size = UDim2.new(0, 64, 0, 17)
+TempoPresoTxt.ZIndex = 4
+TempoPresoTxt.Font = Enum.Font.Unknown
+TempoPresoTxt.Text = "Tempo"
+TempoPresoTxt.TextColor3 = Color3.fromRGB(255, 255, 255)
+TempoPresoTxt.TextSize = 13.000
+
+TempoPreso.Name = "TempoPreso"
+TempoPreso.Parent = Prender
+TempoPreso.BackgroundColor3 = Color3.fromRGB(77, 77, 77)
+TempoPreso.BackgroundTransparency = 0.650
+TempoPreso.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TempoPreso.BorderSizePixel = 0
+TempoPreso.Position = UDim2.new(0.0302227177, 0, 0.701447725, 0)
+TempoPreso.Size = UDim2.new(0, 369, 0, 57)
+TempoPreso.ZIndex = 3
+TempoPreso.Font = Enum.Font.FredokaOne
+TempoPreso.PlaceholderText = "Aqui"
+TempoPreso.Text = ""
+TempoPreso.TextColor3 = Color3.fromRGB(255, 255, 255)
+TempoPreso.TextSize = 17.000
+TempoPreso.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+
+UICorner_4.Parent = TempoPreso
+
+Minutos.Name = "Minutos"
+Minutos.Parent = Prender
+Minutos.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Minutos.BackgroundTransparency = 1.000
+Minutos.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Minutos.BorderSizePixel = 0
+Minutos.Position = UDim2.new(0.257386535, 0, 0.592358291, 0)
+Minutos.Size = UDim2.new(0, 60, 0, 19)
+Minutos.ZIndex = 3
+Minutos.Font = Enum.Font.FredokaOne
+Minutos.Text = "-- Minutos"
+Minutos.TextColor3 = Color3.fromRGB(255, 255, 255)
+Minutos.TextSize = 13.000
+
+MotivoPreso.Name = "MotivoPreso"
+MotivoPreso.Parent = Prender
+MotivoPreso.BackgroundColor3 = Color3.fromRGB(77, 77, 77)
+MotivoPreso.BackgroundTransparency = 0.650
+MotivoPreso.BorderColor3 = Color3.fromRGB(0, 0, 0)
+MotivoPreso.BorderSizePixel = 0
+MotivoPreso.Position = UDim2.new(0.0303786211, 0, 0.325099945, 0)
+MotivoPreso.Size = UDim2.new(0, 470, 0, 73)
+MotivoPreso.ZIndex = 3
+MotivoPreso.Font = Enum.Font.FredokaOne
+MotivoPreso.PlaceholderText = "Aqui"
+MotivoPreso.Text = ""
+MotivoPreso.TextColor3 = Color3.fromRGB(255, 255, 255)
+MotivoPreso.TextSize = 17.000
+MotivoPreso.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+
+UICorner_5.Parent = MotivoPreso
+
+MotivoPresoTxt.Name = "MotivoPresoTxt"
+MotivoPresoTxt.Parent = Prender
+MotivoPresoTxt.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+MotivoPresoTxt.BackgroundTransparency = 1.000
+MotivoPresoTxt.BorderColor3 = Color3.fromRGB(0, 0, 0)
+MotivoPresoTxt.BorderSizePixel = 0
+MotivoPresoTxt.Position = UDim2.new(0.0302227791, 0, 0.325099975, 0)
+MotivoPresoTxt.Size = UDim2.new(0, 64, 0, 15)
+MotivoPresoTxt.ZIndex = 3
+MotivoPresoTxt.Font = Enum.Font.Unknown
+MotivoPresoTxt.Text = "Artigos"
+MotivoPresoTxt.TextColor3 = Color3.fromRGB(255, 255, 255)
+MotivoPresoTxt.TextSize = 13.000
+
+BotaoPrender.Name = "BotaoPrender"
+BotaoPrender.Parent = Prender
+BotaoPrender.BackgroundColor3 = Color3.fromRGB(52, 52, 52)
+BotaoPrender.BorderColor3 = Color3.fromRGB(0, 0, 0)
+BotaoPrender.BorderSizePixel = 0
+BotaoPrender.Position = UDim2.new(0.794518352, 0, 0.698791087, 0)
+BotaoPrender.Size = UDim2.new(0, 90, 0, 37)
+BotaoPrender.ZIndex = 3
+BotaoPrender.Font = Enum.Font.Unknown
+BotaoPrender.Text = "Prender"
+BotaoPrender.TextColor3 = Color3.fromRGB(255, 255, 255)
+BotaoPrender.TextSize = 17.000
+
+UICorner_6.Parent = BotaoPrender
+
+outro.Name = "outro"
+outro.Parent = Prender
+outro.BackgroundColor3 = Color3.fromRGB(4, 88, 4)
+outro.BorderColor3 = Color3.fromRGB(0, 0, 0)
+outro.BorderSizePixel = 0
+outro.Position = UDim2.new(0.0367410779, 0, -0.066412203, 0)
+outro.Size = UDim2.new(0, 57, 0, 3)
+outro.ZIndex = 5
+
+UICorner_7.CornerRadius = UDim.new(0, 100000)
+UICorner_7.Parent = outro
+
+outro_2.Name = "outro"
+outro_2.Parent = Prender
+outro_2.BackgroundColor3 = Color3.fromRGB(4, 88, 4)
+outro_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+outro_2.BorderSizePixel = 0
+outro_2.Position = UDim2.new(0.0367410779, 0, 0.283983976, 0)
+outro_2.Size = UDim2.new(0, 57, 0, 3)
+outro_2.ZIndex = 5
+
+UICorner_8.CornerRadius = UDim.new(0, 100000)
+UICorner_8.Parent = outro_2
+
+outro_3.Name = "outro"
+outro_3.Parent = Prender
+outro_3.BackgroundColor3 = Color3.fromRGB(4, 88, 4)
+outro_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
+outro_3.BorderSizePixel = 0
+outro_3.Position = UDim2.new(0.0417000279, 0, 0.6566782, 0)
+outro_3.Size = UDim2.new(0, 57, 0, 3)
+outro_3.ZIndex = 5
+
+UICorner_9.CornerRadius = UDim.new(0, 100000)
+UICorner_9.Parent = outro_3
+
+RealizarApreenso.Name = "RealizarApreensão"
+RealizarApreenso.Parent = interface
+RealizarApreenso.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+RealizarApreenso.BackgroundTransparency = 1.000
+RealizarApreenso.BorderColor3 = Color3.fromRGB(0, 0, 0)
+RealizarApreenso.BorderSizePixel = 0
+RealizarApreenso.Position = UDim2.new(0.0101000583, 0, 0.00762421219, 0)
+RealizarApreenso.Size = UDim2.new(0, 147, 0, 31)
+RealizarApreenso.ZIndex = 3
+RealizarApreenso.Font = Enum.Font.FredokaOne
+RealizarApreenso.Text = "Realizar apreensão"
+RealizarApreenso.TextColor3 = Color3.fromRGB(255, 255, 255)
+RealizarApreenso.TextSize = 20.000
+
+Info.Name = "Info"
+Info.Parent = interface
+Info.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Info.BackgroundTransparency = 1.000
+Info.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Info.BorderSizePixel = 0
+Info.Position = UDim2.new(0.0101000583, 0, 0.122202419, 0)
+Info.Size = UDim2.new(0, 147, 0, 19)
+Info.ZIndex = 3
+Info.Font = Enum.Font.FredokaOne
+Info.Text = "Informações básicas"
+Info.TextColor3 = Color3.fromRGB(255, 255, 255)
+Info.TextSize = 17.000
+
+Infraes.Name = "Infrações"
+Infraes.Parent = interface
+Infraes.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Infraes.BackgroundTransparency = 1.000
+Infraes.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Infraes.BorderSizePixel = 0
+Infraes.Position = UDim2.new(0.0315575637, 0, 0.398866504, 0)
+Infraes.Size = UDim2.new(0, 126, 0, 10)
+Infraes.ZIndex = 3
+Infraes.Font = Enum.Font.FredokaOne
+Infraes.Text = "Infrações cometidas"
+Infraes.TextColor3 = Color3.fromRGB(255, 255, 255)
+Infraes.TextSize = 17.000
+
+TempoDprisao.Name = "TempoDprisao"
+TempoDprisao.Parent = interface
+TempoDprisao.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TempoDprisao.BackgroundTransparency = 1.000
+TempoDprisao.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TempoDprisao.BorderSizePixel = 0
+TempoDprisao.Position = UDim2.new(0.0101000583, 0, 0.692105412, 0)
+TempoDprisao.Size = UDim2.new(0, 126, 0, 10)
+TempoDprisao.ZIndex = 3
+TempoDprisao.Font = Enum.Font.FredokaOne
+TempoDprisao.Text = "Tempo de prisão"
+TempoDprisao.TextColor3 = Color3.fromRGB(255, 255, 255)
+TempoDprisao.TextSize = 17.000
+
+Painel.Name = "Painel"
+Painel.Parent = HawkMenu
+Painel.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+Painel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Painel.BorderSizePixel = 0
+Painel.Position = UDim2.new(0.152379811, 0, 0.157894731, 0)
+Painel.Size = UDim2.new(0, 575, 0, 373)
+
+UICorner_10.Parent = Painel
+
+aba2.Name = "aba2"
+aba2.Parent = Painel
+aba2.BackgroundColor3 = Color3.fromRGB(39, 39, 39)
+aba2.BackgroundTransparency = 0.500
+aba2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+aba2.BorderSizePixel = 0
+aba2.Position = UDim2.new(5.3166513e-08, 0, 4.0908283e-08, 0)
+aba2.Size = UDim2.new(0, 115, 0, 372)
+
+UICorner_11.Parent = aba2
+
+ArmasButton.Name = "ArmasButton"
+ArmasButton.Parent = aba2
+ArmasButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ArmasButton.BackgroundTransparency = 1.000
+ArmasButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ArmasButton.BorderSizePixel = 0
+ArmasButton.Position = UDim2.new(-1.33849028e-07, 0, 0.352365434, 0)
+ArmasButton.Size = UDim2.new(0, 115, 0, 28)
+ArmasButton.ZIndex = 5
+ArmasButton.Font = Enum.Font.SourceSans
+ArmasButton.Text = ""
+ArmasButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+ArmasButton.TextSize = 14.000
+
+VisualButton.Name = "VisualButton"
+VisualButton.Parent = aba2
+VisualButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+VisualButton.BackgroundTransparency = 1.000
+VisualButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+VisualButton.BorderSizePixel = 0
+VisualButton.Position = UDim2.new(-1.33849028e-07, 0, 0.558801234, 0)
+VisualButton.Size = UDim2.new(0, 115, 0, 28)
+VisualButton.ZIndex = 5
+VisualButton.Font = Enum.Font.SourceSans
+VisualButton.Text = ""
+VisualButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+VisualButton.TextSize = 14.000
+
+TrollsButton.Name = "TrollsButton"
+TrollsButton.Parent = aba2
+TrollsButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TrollsButton.BackgroundTransparency = 1.000
+TrollsButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TrollsButton.BorderSizePixel = 0
+TrollsButton.Position = UDim2.new(-1.33849028e-07, 0, 0.674306989, 0)
+TrollsButton.Size = UDim2.new(0, 115, 0, 28)
+TrollsButton.ZIndex = 5
+TrollsButton.Font = Enum.Font.SourceSans
+TrollsButton.Text = ""
+TrollsButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+TrollsButton.TextSize = 14.000
+
+DinheiroButton.Name = "DinheiroButton"
+DinheiroButton.Parent = aba2
+DinheiroButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+DinheiroButton.BackgroundTransparency = 1.000
+DinheiroButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+DinheiroButton.BorderSizePixel = 0
+DinheiroButton.Position = UDim2.new(-1.33849028e-07, 0, 0.782439947, 0)
+DinheiroButton.Size = UDim2.new(0, 115, 0, 28)
+DinheiroButton.ZIndex = 5
+DinheiroButton.Font = Enum.Font.SourceSans
+DinheiroButton.Text = ""
+DinheiroButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+DinheiroButton.TextSize = 14.000
+
+VeiculoButton.Name = "VeiculoButton"
+VeiculoButton.Parent = aba2
+VeiculoButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+VeiculoButton.BackgroundTransparency = 1.000
+VeiculoButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+VeiculoButton.BorderSizePixel = 0
+VeiculoButton.Position = UDim2.new(-1.33849028e-07, 0, 0.455583215, 0)
+VeiculoButton.Size = UDim2.new(0, 115, 0, 28)
+VeiculoButton.ZIndex = 5
+VeiculoButton.Font = Enum.Font.SourceSans
+VeiculoButton.Text = ""
+VeiculoButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+VeiculoButton.TextSize = 14.000
+
+InicioButton.Name = "InicioButton"
+InicioButton.Parent = aba2
+InicioButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+InicioButton.BackgroundTransparency = 1.000
+InicioButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+InicioButton.BorderSizePixel = 0
+InicioButton.Position = UDim2.new(-1.33849028e-07, 0, 0.246689916, 0)
+InicioButton.Size = UDim2.new(0, 115, 0, 28)
+InicioButton.ZIndex = 5
+InicioButton.Font = Enum.Font.SourceSans
+InicioButton.Text = ""
+InicioButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+InicioButton.TextSize = 14.000
+
+Inicio.Name = "Inicio"
+Inicio.Parent = aba2
+Inicio.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Inicio.BackgroundTransparency = 1.000
+Inicio.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Inicio.BorderSizePixel = 0
+Inicio.Position = UDim2.new(0.187365487, 0, 0.263892949, 0)
+Inicio.Size = UDim2.new(0, 11, 0, 16)
+Inicio.Image = "rbxassetid://16425827043"
+
+NomeJogador.Name = "NomeJogador"
+NomeJogador.Parent = Inicio
+NomeJogador.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+NomeJogador.BackgroundTransparency = 1.000
+NomeJogador.BorderColor3 = Color3.fromRGB(0, 0, 0)
+NomeJogador.BorderSizePixel = 0
+NomeJogador.Position = UDim2.new(1.27280223, 0, -0.279465675, 0)
+NomeJogador.Size = UDim2.new(0, 62, 0, 21)
+NomeJogador.Font = Enum.Font.FredokaOne
+NomeJogador.Text = "Jogador"
+NomeJogador.TextColor3 = Color3.fromRGB(255, 255, 255)
+NomeJogador.TextSize = 16.000
+
+Troll.Name = "Troll"
+Troll.Parent = aba2
+Troll.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Troll.BackgroundTransparency = 1.000
+Troll.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Troll.BorderSizePixel = 0
+Troll.Position = UDim2.new(0.151333719, 0, 0.68464154, 0)
+Troll.Size = UDim2.new(0, 17, 0, 18)
+Troll.Image = "rbxassetid://16425821867"
+
+NameTrolls.Name = "NameTrolls"
+NameTrolls.Parent = Troll
+NameTrolls.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+NameTrolls.BackgroundTransparency = 1.000
+NameTrolls.BorderColor3 = Color3.fromRGB(0, 0, 0)
+NameTrolls.BorderSizePixel = 0
+NameTrolls.Position = UDim2.new(1.00612867, 0, -0.0896623433, 0)
+NameTrolls.Size = UDim2.new(0, 42, 0, 21)
+NameTrolls.Font = Enum.Font.FredokaOne
+NameTrolls.Text = "Trolls"
+NameTrolls.TextColor3 = Color3.fromRGB(255, 255, 255)
+NameTrolls.TextSize = 16.000
+
+Visual.Name = "Visual"
+Visual.Parent = aba2
+Visual.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Visual.BackgroundTransparency = 1.000
+Visual.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Visual.BorderSizePixel = 0
+Visual.Position = UDim2.new(0.165746316, 0, 0.586338758, 0)
+Visual.Size = UDim2.new(0, 14, 0, 10)
+Visual.ZIndex = 6
+Visual.Image = "rbxassetid://17373532998"
+
+NameVisual.Name = "NameVisual"
+NameVisual.Parent = Visual
+NameVisual.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+NameVisual.BackgroundTransparency = 1.000
+NameVisual.BorderColor3 = Color3.fromRGB(0, 0, 0)
+NameVisual.BorderSizePixel = 0
+NameVisual.Position = UDim2.new(0.991388619, 0, -0.765435815, 0)
+NameVisual.Size = UDim2.new(0, 53, 0, 21)
+NameVisual.Font = Enum.Font.FredokaOne
+NameVisual.Text = "Visual"
+NameVisual.TextColor3 = Color3.fromRGB(255, 255, 255)
+NameVisual.TextSize = 16.000
+
+Dinheiro.Name = "Dinheiro"
+Dinheiro.Parent = aba2
+Dinheiro.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Dinheiro.BackgroundTransparency = 1.000
+Dinheiro.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Dinheiro.BorderSizePixel = 0
+Dinheiro.Position = UDim2.new(0.151333585, 0, 0.797835946, 0)
+Dinheiro.Size = UDim2.new(0, 11, 0, 16)
+Dinheiro.Image = "rbxassetid://16425833074"
+
+NameDinheiro.Name = "NameDinheiro"
+NameDinheiro.Parent = Dinheiro
+NameDinheiro.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+NameDinheiro.BackgroundTransparency = 1.000
+NameDinheiro.BorderColor3 = Color3.fromRGB(0, 0, 0)
+NameDinheiro.BorderSizePixel = 0
+NameDinheiro.Position = UDim2.new(1.42156017, 0, -0.194759369, 0)
+NameDinheiro.Size = UDim2.new(0, 51, 0, 21)
+NameDinheiro.Font = Enum.Font.FredokaOne
+NameDinheiro.Text = "Dinheiro"
+NameDinheiro.TextColor3 = Color3.fromRGB(255, 255, 255)
+NameDinheiro.TextSize = 16.000
+
+Arma.Name = "Arma"
+Arma.Parent = aba2
+Arma.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Arma.BackgroundTransparency = 1.000
+Arma.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Arma.BorderSizePixel = 0
+Arma.Position = UDim2.new(0.158540025, 0, 0.372676522, 0)
+Arma.Size = UDim2.new(0, 17, 0, 13)
+Arma.Image = "rbxassetid://16425830822"
+
+NameArma.Name = "NameArma"
+NameArma.Parent = Arma
+NameArma.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+NameArma.BackgroundTransparency = 1.000
+NameArma.BorderColor3 = Color3.fromRGB(0, 0, 0)
+NameArma.BorderSizePixel = 0
+NameArma.Position = UDim2.new(0.84742558, 0, -0.458680362, 0)
+NameArma.Size = UDim2.new(0, 51, 0, 21)
+NameArma.Font = Enum.Font.FredokaOne
+NameArma.Text = "Arma"
+NameArma.TextColor3 = Color3.fromRGB(255, 255, 255)
+NameArma.TextSize = 16.000
+
+Veiculo.Name = "Veiculo"
+Veiculo.Parent = aba2
+Veiculo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Veiculo.BackgroundTransparency = 1.000
+Veiculo.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Veiculo.BorderSizePixel = 0
+Veiculo.Position = UDim2.new(0.16574645, 0, 0.476544946, 0)
+Veiculo.Size = UDim2.new(0, 15, 0, 12)
+Veiculo.ZIndex = 6
+Veiculo.Image = "rbxassetid://16425824831"
+
+NameVeiculo.Name = "NameVeiculo"
+NameVeiculo.Parent = Veiculo
+NameVeiculo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+NameVeiculo.BackgroundTransparency = 1.000
+NameVeiculo.BorderColor3 = Color3.fromRGB(0, 0, 0)
+NameVeiculo.BorderSizePixel = 0
+NameVeiculo.Position = UDim2.new(1.08568931, 0, -0.555567443, 0)
+NameVeiculo.Size = UDim2.new(0, 51, 0, 21)
+NameVeiculo.Font = Enum.Font.FredokaOne
+NameVeiculo.Text = "Veículo"
+NameVeiculo.TextColor3 = Color3.fromRGB(255, 255, 255)
+NameVeiculo.TextSize = 16.000
+
+Pesquisa.Name = "Pesquisa"
+Pesquisa.Parent = HawkMenu
+Pesquisa.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+Pesquisa.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Pesquisa.BorderSizePixel = 0
+Pesquisa.Position = UDim2.new(0.263827205, 0, 0.157894731, 0)
+Pesquisa.Size = UDim2.new(0, 460, 0, 373)
+Pesquisa.Visible = false
+Pesquisa.ZIndex = 2
+
+UICorner_12.Parent = Pesquisa
+
+ConsultarTxt.Name = "ConsultarTxt"
+ConsultarTxt.Parent = Pesquisa
+ConsultarTxt.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ConsultarTxt.BackgroundTransparency = 1.000
+ConsultarTxt.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ConsultarTxt.BorderSizePixel = 0
+ConsultarTxt.Position = UDim2.new(2.63953789e-05, 0, 0.118394047, 0)
+ConsultarTxt.Size = UDim2.new(0, 125, 0, 16)
+ConsultarTxt.ZIndex = 3
+ConsultarTxt.Font = Enum.Font.FredokaOne
+ConsultarTxt.Text = "Consultar indivíduos"
+ConsultarTxt.TextColor3 = Color3.fromRGB(255, 255, 255)
+ConsultarTxt.TextSize = 17.000
+
+LupaPesquisa.Name = "LupaPesquisa"
+LupaPesquisa.Parent = Pesquisa
+LupaPesquisa.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+LupaPesquisa.BackgroundTransparency = 1.000
+LupaPesquisa.BorderColor3 = Color3.fromRGB(0, 0, 0)
+LupaPesquisa.BorderSizePixel = 0
+LupaPesquisa.Position = UDim2.new(0.900325954, 0, 0.217914328, 0)
+LupaPesquisa.Size = UDim2.new(0, 13, 0, 14)
+LupaPesquisa.ZIndex = 5
+LupaPesquisa.Image = "http://www.roblox.com/asset/?id=17202521424"
+
+Consultar.Name = "Consultar"
+Consultar.Parent = Pesquisa
+Consultar.BackgroundColor3 = Color3.fromRGB(77, 77, 77)
+Consultar.BackgroundTransparency = 0.650
+Consultar.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Consultar.BorderSizePixel = 0
+Consultar.Position = UDim2.new(0.000408496737, 0, 0.196119368, 0)
+Consultar.Size = UDim2.new(0, 436, 0, 31)
+Consultar.ZIndex = 3
+Consultar.Font = Enum.Font.FredokaOne
+Consultar.PlaceholderText = "Aqui"
+Consultar.Text = ""
+Consultar.TextColor3 = Color3.fromRGB(255, 255, 255)
+Consultar.TextSize = 15.000
+Consultar.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+Consultar.TextWrapped = true
+
+UICorner_13.CornerRadius = UDim.new(0, 100)
+UICorner_13.Parent = Consultar
+
+Inicio_2.Name = "Inicio"
+Inicio_2.Parent = HawkMenu
+Inicio_2.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+Inicio_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Inicio_2.BorderSizePixel = 0
+Inicio_2.Position = UDim2.new(0.263827205, 0, 0.157894731, 0)
+Inicio_2.Size = UDim2.new(0, 460, 0, 373)
+Inicio_2.ZIndex = 3
+
+UICorner_14.Parent = Inicio_2
+
+Opes.Name = "Opções"
+Opes.Parent = Inicio_2
+Opes.BackgroundColor3 = Color3.fromRGB(39, 39, 39)
+Opes.BackgroundTransparency = 0.500
+Opes.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Opes.BorderSizePixel = 0
+Opes.Position = UDim2.new(0.0619417094, 0, 0.0683611333, 0)
+Opes.Size = UDim2.new(0, 184, 0, 323)
+Opes.ZIndex = 3
+
+UICorner_15.Parent = Opes
+
+NomeOpes.Name = "NomeOpções"
+NomeOpes.Parent = Opes
+NomeOpes.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+NomeOpes.BackgroundTransparency = 1.000
+NomeOpes.BorderColor3 = Color3.fromRGB(0, 0, 0)
+NomeOpes.BorderSizePixel = 0
+NomeOpes.Position = UDim2.new(0.0763777047, 0, 0.0124236774, 0)
+NomeOpes.Size = UDim2.new(0, 156, 0, 17)
+NomeOpes.ZIndex = 7
+NomeOpes.Font = Enum.Font.FredokaOne
+NomeOpes.Text = "Opções"
+NomeOpes.TextColor3 = Color3.fromRGB(255, 255, 255)
+NomeOpes.TextSize = 15.000
+
+Inicio_3.Name = "Inicio"
+Inicio_3.Parent = Opes
+Inicio_3.BackgroundColor3 = Color3.fromRGB(59, 59, 59)
+Inicio_3.BackgroundTransparency = 0.500
+Inicio_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Inicio_3.BorderSizePixel = 0
+Inicio_3.Position = UDim2.new(0.00123330823, 0, -0.00514140865, 0)
+Inicio_3.Size = UDim2.new(0, 184, 0, 29)
+Inicio_3.ZIndex = 4
+
+UICorner_16.Parent = Inicio_3
+
+NoclipButton.Name = "NoclipButton"
+NoclipButton.Parent = Opes
+NoclipButton.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+NoclipButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+NoclipButton.BorderSizePixel = 0
+NoclipButton.Position = UDim2.new(0.0548475496, 0, 0.121660642, 0)
+NoclipButton.Size = UDim2.new(0, 164, 0, 30)
+NoclipButton.ZIndex = 6
+NoclipButton.Font = Enum.Font.FredokaOne
+NoclipButton.Text = "NoClip"
+NoclipButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+NoclipButton.TextSize = 11.000
+
+UICorner_17.Parent = NoclipButton
+
+InvisibilidadeButton.Name = "InvisibilidadeButton"
+InvisibilidadeButton.Parent = Opes
+InvisibilidadeButton.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+InvisibilidadeButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+InvisibilidadeButton.BorderSizePixel = 0
+InvisibilidadeButton.Position = UDim2.new(0.0548475496, 0, 0.24336724, 0)
+InvisibilidadeButton.Size = UDim2.new(0, 164, 0, 30)
+InvisibilidadeButton.ZIndex = 6
+InvisibilidadeButton.Font = Enum.Font.FredokaOne
+InvisibilidadeButton.Text = "Invisibilidade (E)"
+InvisibilidadeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+InvisibilidadeButton.TextSize = 11.000
+
+UICorner_18.Parent = InvisibilidadeButton
+
+Outros.Name = "Outros"
+Outros.Parent = Inicio_2
+Outros.BackgroundColor3 = Color3.fromRGB(39, 39, 39)
+Outros.BackgroundTransparency = 0.500
+Outros.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Outros.BorderSizePixel = 0
+Outros.Position = UDim2.new(0.527294338, 0, 0.0683611333, 0)
+Outros.Size = UDim2.new(0, 184, 0, 323)
+Outros.ZIndex = 3
+
+UICorner_19.Parent = Outros
+
+NomeOutros.Name = "NomeOutros"
+NomeOutros.Parent = Outros
+NomeOutros.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+NomeOutros.BackgroundTransparency = 1.000
+NomeOutros.BorderColor3 = Color3.fromRGB(0, 0, 0)
+NomeOutros.BorderSizePixel = 0
+NomeOutros.Position = UDim2.new(0.0782739371, 0, 0.0124236774, 0)
+NomeOutros.Size = UDim2.new(0, 156, 0, 17)
+NomeOutros.ZIndex = 7
+NomeOutros.Font = Enum.Font.FredokaOne
+NomeOutros.Text = "Outros"
+NomeOutros.TextColor3 = Color3.fromRGB(255, 255, 255)
+NomeOutros.TextSize = 15.000
+
+Inicio_4.Name = "Inicio"
+Inicio_4.Parent = Outros
+Inicio_4.BackgroundColor3 = Color3.fromRGB(59, 59, 59)
+Inicio_4.BackgroundTransparency = 0.500
+Inicio_4.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Inicio_4.BorderSizePixel = 0
+Inicio_4.Position = UDim2.new(0.00312971021, 0, -0.00514140865, 0)
+Inicio_4.Size = UDim2.new(0, 184, 0, 29)
+Inicio_4.ZIndex = 4
+
+UICorner_20.Parent = Inicio_4
+
+Revistar.Name = "Revistar"
+Revistar.Parent = HawkMenu
+Revistar.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+Revistar.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Revistar.BorderSizePixel = 0
+Revistar.Position = UDim2.new(0.263827205, 0, 0.157894731, 0)
+Revistar.Size = UDim2.new(0, 460, 0, 373)
+Revistar.Visible = false
+Revistar.ZIndex = 3
+
+UICorner_21.Parent = Revistar
+
+RevistarTxt.Name = "RevistarTxt"
+RevistarTxt.Parent = Revistar
+RevistarTxt.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+RevistarTxt.BackgroundTransparency = 1.000
+RevistarTxt.BorderColor3 = Color3.fromRGB(0, 0, 0)
+RevistarTxt.BorderSizePixel = 0
+RevistarTxt.Position = UDim2.new(2.63953789e-05, 0, 0.0277077518, 0)
+RevistarTxt.Size = UDim2.new(0, 61, 0, 16)
+RevistarTxt.ZIndex = 3
+RevistarTxt.Font = Enum.Font.FredokaOne
+RevistarTxt.Text = "Revistar"
+RevistarTxt.TextColor3 = Color3.fromRGB(255, 255, 255)
+RevistarTxt.TextSize = 20.000
+
+NomeRevistar.Name = "NomeRevistar"
+NomeRevistar.Parent = Revistar
+NomeRevistar.BackgroundColor3 = Color3.fromRGB(77, 77, 77)
+NomeRevistar.BackgroundTransparency = 0.650
+NomeRevistar.BorderColor3 = Color3.fromRGB(0, 0, 0)
+NomeRevistar.BorderSizePixel = 0
+NomeRevistar.Position = UDim2.new(0.000408496737, 0, 0.196119368, 0)
+NomeRevistar.Size = UDim2.new(0, 436, 0, 31)
+NomeRevistar.ZIndex = 3
+NomeRevistar.Font = Enum.Font.FredokaOne
+NomeRevistar.PlaceholderText = "Aqui"
+NomeRevistar.Text = ""
+NomeRevistar.TextColor3 = Color3.fromRGB(255, 255, 255)
+NomeRevistar.TextSize = 15.000
+NomeRevistar.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+NomeRevistar.TextWrapped = true
+
+UICorner_22.CornerRadius = UDim.new(0, 100)
+UICorner_22.Parent = NomeRevistar
+
+BotaoRevistar.Name = "BotaoRevistar"
+BotaoRevistar.Parent = Revistar
+BotaoRevistar.BackgroundColor3 = Color3.fromRGB(52, 52, 52)
+BotaoRevistar.BorderColor3 = Color3.fromRGB(0, 0, 0)
+BotaoRevistar.BorderSizePixel = 0
+BotaoRevistar.Position = UDim2.new(-0.000527774566, 0, 0.314308852, 0)
+BotaoRevistar.Size = UDim2.new(0, 90, 0, 37)
+BotaoRevistar.ZIndex = 3
+BotaoRevistar.Font = Enum.Font.Unknown
+BotaoRevistar.Text = "Revistando"
+BotaoRevistar.TextColor3 = Color3.fromRGB(255, 255, 255)
+BotaoRevistar.TextSize = 17.000
+
+UICorner_23.Parent = BotaoRevistar
+
+Info_2.Name = "Info"
+Info_2.Parent = Revistar
+Info_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Info_2.BackgroundTransparency = 1.000
+Info_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Info_2.BorderSizePixel = 0
+Info_2.Position = UDim2.new(2.63953789e-05, 0, 0.098786056, 0)
+Info_2.Size = UDim2.new(0, 100, 0, 16)
+Info_2.ZIndex = 3
+Info_2.Font = Enum.Font.FredokaOne
+Info_2.Text = "Nome indivíduo"
+Info_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+Info_2.TextSize = 17.000
+
+outro_4.Name = "outro"
+outro_4.Parent = Revistar
+outro_4.BackgroundColor3 = Color3.fromRGB(4, 88, 4)
+outro_4.BorderColor3 = Color3.fromRGB(0, 0, 0)
+outro_4.BorderSizePixel = 0
+outro_4.Position = UDim2.new(0.00702429563, 0, 0.142390192, 0)
+outro_4.Size = UDim2.new(0, 42, 0, 3)
+outro_4.ZIndex = 5
+
+UICorner_24.CornerRadius = UDim.new(0, 100000)
+UICorner_24.Parent = outro_4
+
+aba3.Name = "aba3"
+aba3.Parent = Revistar
+aba3.BackgroundColor3 = Color3.fromRGB(4, 88, 4)
+aba3.BackgroundTransparency = 0.500
+aba3.BorderColor3 = Color3.fromRGB(0, 0, 0)
+aba3.BorderSizePixel = 0
+aba3.Position = UDim2.new(0.555428743, 0, 0.315914482, 0)
+aba3.Size = UDim2.new(0, 160, 0, 237)
+aba3.ZIndex = 7
+
+UICorner_25.Parent = aba3
+
+ItensEncontrados.Name = "ItensEncontrados"
+ItensEncontrados.Parent = Revistar
+ItensEncontrados.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ItensEncontrados.BackgroundTransparency = 1.000
+ItensEncontrados.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ItensEncontrados.BorderSizePixel = 0
+ItensEncontrados.Position = UDim2.new(0.297738612, 0, 0.341433227, 0)
+ItensEncontrados.Size = UDim2.new(0, 124, 0, 16)
+ItensEncontrados.ZIndex = 8
+ItensEncontrados.Font = Enum.Font.FredokaOne
+ItensEncontrados.Text = "Itens Encontrado:"
+ItensEncontrados.TextColor3 = Color3.fromRGB(255, 255, 255)
+ItensEncontrados.TextSize = 17.000
+
+Itens.Name = "Itens"
+Itens.Parent = Revistar
+Itens.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Itens.BackgroundTransparency = 1.000
+Itens.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Itens.BorderSizePixel = 0
+Itens.Position = UDim2.new(0.590488851, 0, 0.353687972, 0)
+Itens.Size = UDim2.new(0, 124, 0, 210)
+Itens.ZIndex = 8
+Itens.Font = Enum.Font.FredokaOne
+Itens.Text = "Itens"
+Itens.TextColor3 = Color3.fromRGB(255, 255, 255)
+Itens.TextSize = 17.000
+
+RemoverItens.Name = "RemoverItens"
+RemoverItens.Parent = Revistar
+RemoverItens.BackgroundColor3 = Color3.fromRGB(52, 52, 52)
+RemoverItens.BorderColor3 = Color3.fromRGB(0, 0, 0)
+RemoverItens.BorderSizePixel = 0
+RemoverItens.Position = UDim2.new(-0.000527774566, 0, 0.449112833, 0)
+RemoverItens.Size = UDim2.new(0, 90, 0, 73)
+RemoverItens.ZIndex = 3
+RemoverItens.Font = Enum.Font.Unknown
+RemoverItens.Text = "Remover Itens"
+RemoverItens.TextColor3 = Color3.fromRGB(255, 255, 255)
+RemoverItens.TextSize = 13.000
+
+UICorner_26.Parent = RemoverItens
+
+-- Scripts:
+
+local function YHUKT_fake_script() -- BotaoPrender.LocalScript 
+	local script = Instance.new('LocalScript', BotaoPrender)
+
+	local ReplicatedStorage = game:GetService("ReplicatedStorage")
+	local prenderJogadorEvent = ReplicatedStorage:WaitForChild("PrenderJogadorEvent")
+	
+	local botaoPrender = script.Parent
+	local nomePreso = script.Parent.Parent.NomePreso
+	local tempoPreso = script.Parent.Parent.TempoPreso
+	local motivoPreso = script.Parent.Parent.MotivoPreso
+	
+	function prenderJogador()
+		local jogador = nomePreso.Text
+		local tempo = tonumber(tempoPreso.Text)
+		local motivo = motivoPreso.Text
+	
+		if jogador ~= "" and tempo and motivo ~= "" then
+			print("Enviando evento para o servidor...")
+			prenderJogadorEvent:FireServer(jogador, tempo, motivo)
+		else
+			print("Por favor, preencha todos os campos corretamente.")
 		end
+	end
+	
+	botaoPrender.MouseButton1Click:Connect(prenderJogador)
+	
+end
+coroutine.wrap(YHUKT_fake_script)()
+local function TOGC_fake_script() -- NoclipButton.LocalScript 
+	local script = Instance.new('LocalScript', NoclipButton)
 
-		local teleportButton
-		local teleportButtonVisible = false
-
-		-- Create teleport GUI
-		local teleportScreenGui = Instance.new("ScreenGui")
-		teleportScreenGui.Parent = game.Players.LocalPlayer.PlayerGui
-
-		teleportButton = Instance.new("TextButton")
-		teleportButton.Text = "Tpway"
-		teleportButton.Size = UDim2.new(0, 100, 0, 50)
-		teleportButton.Position = UDim2.new(0.85, -50, 0.1, 0) -- Posição ajustada
-		teleportButton.Visible = false
-		teleportButton.Parent = teleportScreenGui
-
-		-- Move the button
-		local isDragging = false
-		local offset = Vector2.new(0, 0)
-
-		teleportButton.MouseButton1Down:Connect(function()
-			isDragging = true
-			local startPos = UIS:GetMouseLocation()
-			offset = startPos - teleportButton.Position
-		end)
-
-		UIS.InputChanged:Connect(function(input)
-			if isDragging and input.UserInputType == Enum.UserInputType.MouseMovement then
-				local newPos = UIS:GetMouseLocation() - offset
-				teleportButton.Position = UDim2.new(0, newPos.X, 0, newPos.Y)
+	local button = script.Parent
+	local player = game.Players.LocalPlayer
+	local char = player.Character or player.CharacterAdded:Wait()
+	
+	local cam = workspace.CurrentCamera
+	local uis = game:GetService("UserInputService")
+	
+	local flying = false
+	local bodyVelocity
+	local speed = 100
+	
+	local function toggleFlight()
+		flying = not flying
+		if flying then
+			if not bodyVelocity then
+				bodyVelocity = Instance.new("BodyVelocity", char.PrimaryPart)
+				bodyVelocity.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
+				bodyVelocity.Velocity = Vector3.new(0, 0, 0)
 			end
-		end)
-
-		UIS.InputEnded:Connect(function(input)
-			if input.UserInputType == Enum.UserInputType.MouseButton1 then
-				isDragging = false
+			button.Text = "Desativar NoClip"
+		else
+			if bodyVelocity then
+				bodyVelocity:Destroy()
+				bodyVelocity = nil
 			end
-		end)
-
-		teleportButton.MouseButton1Click:Connect(function()
-			Teleport()
-		end)
-
-		function Teleport()
-			local character = Players.LocalPlayer.Character
-			if character then
-				local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
-				if humanoidRootPart then
-					local pos = teleportMarker.Position
-					humanoidRootPart.CFrame = CFrame.new(pos)
-					teleportMarker.Position = Vector3.new(0, -10000, 0) -- Move o marcador para longe
-					teleportButtonVisible = false
-					teleportButton.Visible = false
+			button.Text = "NoClip"
+		end
+	end
+	
+	button.MouseButton1Click:Connect(toggleFlight)
+	
+	uis.InputBegan:Connect(function(input, isProcessed)
+		if isProcessed then return end
+		if input.KeyCode == Enum.KeyCode.Q then
+			toggleFlight()
+		end
+	end)
+	
+	while true do
+		if flying then
+			if bodyVelocity then
+				bodyVelocity.Velocity = Vector3.new(0, 0, 0) 
+	
+				if uis:IsKeyDown(Enum.KeyCode.W) then
+					bodyVelocity.Velocity = cam.CFrame.LookVector * speed
+				elseif uis:IsKeyDown(Enum.KeyCode.S) then
+					bodyVelocity.Velocity = cam.CFrame.LookVector * -speed
+				elseif uis:IsKeyDown(Enum.KeyCode.A) then
+					bodyVelocity.Velocity = cam.CFrame.RightVector * -speed
+				elseif uis:IsKeyDown(Enum.KeyCode.D) then
+					bodyVelocity.Velocity = cam.CFrame.RightVector * speed
 				end
 			end
 		end
+		wait(0.1)
+	end
+	
+end
+coroutine.wrap(TOGC_fake_script)()
+local function ATDLAVA_fake_script() -- BotaoRevistar.LocalScript 
+	local script = Instance.new('LocalScript', BotaoRevistar)
 
-		tool.Activated:Connect(function()
-			local pos = mouse.Hit.p
-			teleportMarker.Position = pos
-
-			if UIS.TouchEnabled then
-				teleportButtonVisible = true
-				teleportButton.Visible = true
-			end
-		end)
-
-		tool.Parent = Players.LocalPlayer.Backpack
-
-	end    
-})
-
-Tab:AddButton({
-	Name = "Tpway - PC (Q)",
-	Callback = function()
-		local Players = game:GetService("Players")
-		local UIS = game:GetService("UserInputService")
-
-		local mouse = Players.LocalPlayer:GetMouse()
-		local tool = Instance.new("Tool")
-		tool.RequiresHandle = false
-		tool.Name = "Tpway(Q)"
-
-		local teleportMarker = game.Workspace:FindFirstChild("TeleportMarker")
-		if not teleportMarker then
-			teleportMarker = Instance.new("Part")
-			teleportMarker.Name = "TeleportMarker"
-			teleportMarker.Size = Vector3.new(1, 1, 1)
-			teleportMarker.Anchored = true
-			teleportMarker.CanCollide = false
-			teleportMarker.Shape = Enum.PartType.Ball
-			teleportMarker.Color = Color3.fromRGB(255, 0, 0)
-			teleportMarker.Transparency = 0.5
-			teleportMarker.Parent = game.Workspace
-		end
-
-		tool.Activated:Connect(function()
-			local pos = mouse.Hit.p
-			teleportMarker.Position = pos
-		end)
-
-		UIS.InputBegan:Connect(function(input)
-			if input.KeyCode == Enum.KeyCode.Q then
-				Teleport()
-			end
-		end)
-
-		function Teleport()
-			local character = Players.LocalPlayer.Character
-			if character then
-				local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
-				if humanoidRootPart then
-					local pos = teleportMarker.Position
-					humanoidRootPart.CFrame = CFrame.new(pos)
-					teleportMarker.Position = Vector3.new(0, -10000, 0) -- Move o marcador para longe
-				end
-			end
-		end
-
-		tool.Parent = Players.LocalPlayer.Backpack
-
-	end    
-})
-
-local Section = Tab:AddSection({
-	Name = "Voar"
-})
-
-Tab:AddButton({
-	Name = "Voar V3",
-	Callback = function()
-		loadstring(game:HttpGet('https://pastebin.com/raw/YSL3xKYU'))()
-	end    
-})
-
-local Section = Tab:AddSection({
-	Name = "Opções - Invisibilidade"
-})
-
-Tab:AddButton({
-	Name = "Invisibilidade (Mobile)",
-	Callback = function()
-		loadstring(game:HttpGet('https://raw.githubusercontent.com/GhostPlayer352/Test4/main/Invisible%20Gui'))()
-	end    
-})
-
-Tab:AddButton({
-	Name = "Invisibilidade - E (PC)",
-	Callback = function()
-      		--[[Invisibility Toggle
-
-You can find the orginal concept here: https://v3rmillion.net/showthread.php?tid=544634
-
-This method clones the character locally, teleports the real character to a safe location, then sets the character to the clone.
-Basically, your real character is in the sky while you are on the ground.
-
-
-Because of the way this works, games with a decent anti-cheat will fck this up.
-If you turn it off, you have to go to a safe place before going invisible.
-
-Written by: BitingTheDust ; https://v3rmillion.net/member.php?action=profile&uid=1628149
-]]
-		--Settings:
-		local ScriptStarted = false
-		local Keybind = "E" --Set to whatever you want, has to be the name of a KeyCode Enum.
-		local Transparency = true --Will make you slightly transparent when you are invisible. No reason to disable.
-		local NoClip = false --Will make your fake character no clip.
-
-		local Player = game:GetService("Players").LocalPlayer
-		local RealCharacter = Player.Character or Player.CharacterAdded:Wait()
-
-		local IsInvisible = false
-
-		RealCharacter.Archivable = true
-		local FakeCharacter = RealCharacter:Clone()
-		local Part
-		Part = Instance.new("Part", workspace)
-		Part.Anchored = true
-		Part.Size = Vector3.new(200, 1, 200)
-		Part.CFrame = CFrame.new(0, -500, 0) --Set this to whatever you want, just far away from the map.
-		Part.CanCollide = true
-		FakeCharacter.Parent = workspace
-		FakeCharacter.HumanoidRootPart.CFrame = Part.CFrame * CFrame.new(0, 5, 0)
-
-		for i, v in pairs(RealCharacter:GetChildren()) do
-			if v:IsA("LocalScript") then
-				local clone = v:Clone()
-				clone.Disabled = true
-				clone.Parent = FakeCharacter
-			end
-		end
-		if Transparency then
-			for i, v in pairs(FakeCharacter:GetDescendants()) do
-				if v:IsA("BasePart") then
-					v.Transparency = 0.7
-				end
-			end
-		end
-		local CanInvis = true
-		function RealCharacterDied()
-			CanInvis = false
-			RealCharacter:Destroy()
-			RealCharacter = Player.Character
-			CanInvis = true
-			isinvisible = false
-			FakeCharacter:Destroy()
-			workspace.CurrentCamera.CameraSubject = RealCharacter.Humanoid
-
-			RealCharacter.Archivable = true
-			FakeCharacter = RealCharacter:Clone()
-			Part:Destroy()
-			Part = Instance.new("Part", workspace)
-			Part.Anchored = true
-			Part.Size = Vector3.new(200, 1, 200)
-			Part.CFrame = CFrame.new(9999, 9999, 9999) --Set this to whatever you want, just far away from the map.
-			Part.CanCollide = true
-			FakeCharacter.Parent = workspace
-			FakeCharacter.HumanoidRootPart.CFrame = Part.CFrame * CFrame.new(0, 5, 0)
-
-			for i, v in pairs(RealCharacter:GetChildren()) do
-				if v:IsA("LocalScript") then
-					local clone = v:Clone()
-					clone.Disabled = true
-					clone.Parent = FakeCharacter
-				end
-			end
-			if Transparency then
-				for i, v in pairs(FakeCharacter:GetDescendants()) do
-					if v:IsA("BasePart") then
-						v.Transparency = 0.7
+	local scriptParent = script.Parent
+	local nomeRevistar = scriptParent.Parent.NomeRevistar
+	local itensLabel = scriptParent.Parent.Itens
+	
+	local function listarItens()
+		local playerName = nomeRevistar.Text
+	
+		if playerName ~= "" then
+			local targetPlayer = game.Players:FindFirstChild(playerName)
+	
+			if targetPlayer then
+				local inventory = {}
+				local playerInventory = targetPlayer:FindFirstChild("Backpack")
+	
+				if playerInventory then
+					for _, item in pairs(playerInventory:GetChildren()) do
+						table.insert(inventory, item.Name)
 					end
 				end
-			end
-			RealCharacter.Humanoid.Died:Connect(function()
-				RealCharacter:Destroy()
-				FakeCharacter:Destroy()
-			end)
-			Player.CharacterAppearanceLoaded:Connect(RealCharacterDied)
-		end
-		RealCharacter.Humanoid.Died:Connect(function()
-			RealCharacter:Destroy()
-			FakeCharacter:Destroy()
-		end)
-		Player.CharacterAppearanceLoaded:Connect(RealCharacterDied)
-		local PseudoAnchor
-		game:GetService "RunService".RenderStepped:Connect(
-			function()
-				if PseudoAnchor ~= nil then
-					PseudoAnchor.CFrame = Part.CFrame * CFrame.new(0, 5, 0)
+	
+				if #inventory > 0 then
+					itensLabel.Text = table.concat(inventory, ", ")
+				else
+					itensLabel.Text = "O jogador está limpo."
 				end
-				if NoClip then
-					FakeCharacter.Humanoid:ChangeState(11)
-				end
-			end
-		)
-
-		PseudoAnchor = FakeCharacter.HumanoidRootPart
-		local function Invisible()
-			if IsInvisible == false then
-				local StoredCF = RealCharacter.HumanoidRootPart.CFrame
-				RealCharacter.HumanoidRootPart.CFrame = FakeCharacter.HumanoidRootPart.CFrame
-				FakeCharacter.HumanoidRootPart.CFrame = StoredCF
-				RealCharacter.Humanoid:UnequipTools()
-				Player.Character = FakeCharacter
-				workspace.CurrentCamera.CameraSubject = FakeCharacter.Humanoid
-				PseudoAnchor = RealCharacter.HumanoidRootPart
-				for i, v in pairs(FakeCharacter:GetChildren()) do
-					if v:IsA("LocalScript") then
-						v.Disabled = false
-					end
-				end
-
-				IsInvisible = true
 			else
-				local StoredCF = FakeCharacter.HumanoidRootPart.CFrame
-				FakeCharacter.HumanoidRootPart.CFrame = RealCharacter.HumanoidRootPart.CFrame
-
-				RealCharacter.HumanoidRootPart.CFrame = StoredCF
-
-				FakeCharacter.Humanoid:UnequipTools()
-				Player.Character = RealCharacter
-				workspace.CurrentCamera.CameraSubject = RealCharacter.Humanoid
-				PseudoAnchor = FakeCharacter.HumanoidRootPart
-				for i, v in pairs(FakeCharacter:GetChildren()) do
-					if v:IsA("LocalScript") then
-						v.Disabled = true
-					end
-				end
-				IsInvisible = false
-			end
-		end
-
-		game:GetService("UserInputService").InputBegan:Connect(
-		function(key, gamep)
-			if gamep then
-				return
-			end
-			if key.KeyCode.Name:lower() == Keybind:lower() and CanInvis and RealCharacter and FakeCharacter then
-				if RealCharacter:FindFirstChild("HumanoidRootPart") and FakeCharacter:FindFirstChild("HumanoidRootPart") then
-					Invisible()
-				end
-			end
-		end
-		)
-		local Sound = Instance.new("Sound",game:GetService("SoundService"))
-		Sound.SoundId = "rbxassetid://232127604"
-		Sound:Play()
-		game:GetService("StarterGui"):SetCore("SendNotification",{["Title"] = "Invisible Toggle Loaded",["Text"] = "Press "..Keybind.." to become change visibility.",["Duration"] = 20,["Button1"] = "Okay."})
-	end    
-})
-
-local Section = Tab:AddSection({
-	Name = "Espectar"
-})
-
--- Função para criar a GUI de espectador
-local function createSpectatorGUI()
-	-- Função para começar ou parar de espectar
-	local function toggleSpectate(playerName)
-		local player = game.Players:FindFirstChild(playerName)
-		if player then
-			if isSpectating then
-				game.Workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character
-				isSpectating = false
-			else
-				game.Workspace.CurrentCamera.CameraSubject = player.Character
-				isSpectating = true
+				itensLabel.Text = "Jogador não encontrado."
 			end
 		else
-			print("Jogador não encontrado:", playerName)
+			itensLabel.Text = "Digite o nome do indivíduo."
 		end
 	end
-
-	-- Criar um TextBox para inserir o nome do jogador a ser observado
-	Tab:AddTextbox({
-		Name = "Nome do Jogador",
-		Default = "Espectar",
-		TextDisappear = true,
-		Callback = function(playerName)
-			toggleSpectate(playerName)
-		end	  
-	})
-
-	-- Criar uma caixa de seleção para iniciar/parar de observar
-	Tab:AddToggle({
-		Name = "Espectar/Parar",
-		Default = false,
-		Callback = function(isToggling)
-			if isToggling then
-				toggleSpectate(Tab:GetTextboxValue("PlayerName"))
-			else
-				game.Workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character
-				isSpectating = false
-			end
-		end    
-	})
+	
+	script.Parent.MouseButton1Click:Connect(listarItens)
 end
+coroutine.wrap(ATDLAVA_fake_script)()
+local function LWBD_fake_script() -- RemoverItens.LocalScript 
+	local script = Instance.new('LocalScript', RemoverItens)
 
-
--- Chamar a função para criar e mostrar a GUI de espectador
-createSpectatorGUI()
-
-local Section = Tab:AddSection({
-	Name = "Velocidade"
-})
-
-
--- Função para ajustar a velocidade do jogador
-local function adjustPlayerSpeed(value)
-	-- Defina a velocidade máxima permitida
-	local maxSpeed = 500
-
-	-- Obtenha o jogador local
-	local player = game.Players.LocalPlayer
-
-	-- Verifique se o jogador existe e tem um personagem
-	if player and player.Character then
-		-- Obtenha o objeto Humanoid do personagem
-		local humanoid = player.Character:FindFirstChildOfClass("Humanoid")
-		if humanoid then
-			-- Calcule a velocidade com base no valor do controle deslizante
-			local speed = math.min(value * 25, maxSpeed) -- Ajuste conforme necessário
-
-			-- Atualize a velocidade do jogador
-			humanoid.WalkSpeed = speed
+	local ReplicatedStorage = game:GetService("ReplicatedStorage")
+	local remoteEvent = ReplicatedStorage:WaitForChild("RemoverItens")
+	
+	script.Parent.MouseButton1Click:Connect(function()
+		local playerName = script.Parent.Parent.NomeRevistar.Text
+	
+		if playerName ~= "" then
+			
+			remoteEvent:FireServer(playerName)
+		else
+			warn("Por favor, insira um nome de jogador.")
 		end
-	end
+	end)
+	
 end
+coroutine.wrap(LWBD_fake_script)()
+local function JDQYR_fake_script() -- HawkMenu.TrocaAba 
+	local script = Instance.new('LocalScript', HawkMenu)
 
--- Adicione o controle deslizante
-local slider = Tab:AddSlider({
-	Name = "Velocidade",
-	Min = 0,
-	Max = 500,
-	Default = 5,
-	Color = Color3.fromRGB(255,255,255),
-	Increment = 1,
-	ValueName = "Velocidade",
-	Callback = function(value)
-		adjustPlayerSpeed(value)
-	end    
-})
-
--- SEPARAÇÃO!
-
-local Tab2 = Window:MakeTab({
-	Name = "Arma",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
+	local botaoTroll = script.Parent.Painel.aba2.TrollsButton
+	local botaoInicio = script.Parent.Painel.aba2.InicioButton
+	local botaoVisual = script.Parent.Painel.aba2.VisualButton
+	local botaoVeiculos = script.Parent.Painel.aba2.VeiculoButton
+	local botaoArmas = script.Parent.Painel.aba2.ArmasButton
+	local botaoDinheiro = script.Parent.Painel.aba2.DinheiroButton
+	
+	local interface = script.Parent.interface
+	local inicio = script.Parent.Inicio
+	local pesquisa = script.Parent.Pesquisa
+	local revistar = script.Parent.Revistar
+	
+	local function fecharOutrasGui()
+	    interface.Visible = false
+	    inicio.Visible = false
+	    pesquisa.Visible = false
+	    revistar.Visible = false
+	end
+	
+	botaoTroll.MouseButton1Click:Connect(function()
+	    if botaoTroll.Visible then
+	        fecharOutrasGui()
+	        interface.Visible = true
+	    end
+	end)
+	
+	botaoInicio.MouseButton1Click:Connect(function()
+	    if botaoInicio.Visible then
+	        fecharOutrasGui()
+	        inicio.Visible = true
+	    end
+	end)
+	
+	botaoVisual.MouseButton1Click:Connect(function()
+	    if botaoVisual.Visible then
+	        fecharOutrasGui()
+	        pesquisa.Visible = true
+	    end
+	end)
+	
+	botaoVeiculos.MouseButton1Click:Connect(function()
+	    if botaoVeiculos.Visible then
+	        fecharOutrasGui()
+	        revistar.Visible = true
+	    end
+	end)
+	
+end
+coroutine.wrap(JDQYR_fake_script)()
