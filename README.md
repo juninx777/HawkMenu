@@ -2,7 +2,7 @@ local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shl
 local Window = OrionLib:MakeWindow({Name = "SpeedFarm - Favela do BTT", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
 
 local Tab = Window:MakeTab({
-	Name = "Manual",
+	Name = "Principal",
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
@@ -114,7 +114,7 @@ Tab:AddButton({
 
 Tab:AddBind({
 	Name = "Bindar Tecla - LavarDinheiro",
-	Default = Enum.KeyCode.E,
+	Default = Enum.KeyCode.R,
 	Hold = false,
 	Callback = washMoney
 })
@@ -319,6 +319,23 @@ Tab:AddButton({
 			teleportPlayerToPosition(player)
 		end
 	end
+})
+
+local Tab = Window:MakeTab({
+	Name = "Bypass",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Section = Tab:AddSection({
+	Name = "Bypass - Adonis"
+})
+
+Tab:AddButton({
+	Name = "Bypass",
+	Callback = function()
+		for k,v in pairs(getgc(true)) do if pcall(function() return rawget(v,"indexInstance") end) and type(rawget(v,"indexInstance")) == "table" and (rawget(v,"indexInstance"))[1] == "kick" then v.tvk = {"kick",function() return game.Workspace:WaitForChild("") end} end end
+	end    
 })
 
 local Tab = Window:MakeTab({
